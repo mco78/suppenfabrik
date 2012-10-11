@@ -1,21 +1,33 @@
-<%= link_to "Suppenfabrik", root_path, :class => 'brand' %>
-<ul class="nav">
-  <% if user_signed_in? %>
-    <li>
-    <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>        
-    </li>
-  <% else %>
-    <li>
-    <%= link_to 'Login', new_user_session_path %>  
-    </li>
-  <% end %>
-  <% if user_signed_in? %>
-    <li>
-    <%= link_to 'Edit account', edit_user_registration_path %>
-    </li>
-  <% else %>
-    <li>
-    <%= link_to 'Sign up', new_user_registration_path %>
-    </li>
-  <% end %>
-</ul>
+<div class="contain-to-grid">  
+  
+  <nav class="top-bar">
+    <ul>
+      <li class="name">
+        <% logo = image_tag("sf_logo.png") %>
+        <%= link_to logo, root_path %>
+      </li>
+      <li class="toggle-topbar"><a href="#"></a></li>
+    </ul>
+    <section>
+      <ul class="left">
+        <% if user_signed_in? %>
+          <li>
+          <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>        
+          </li>
+          <li>
+          <%= link_to 'Edit account', edit_user_registration_path %>
+          </li>
+        <% else %>
+          <li>
+          <%= link_to 'Login', new_user_session_path %>  
+          </li>
+        <% end %>
+        <li><a href="#">Link2</a></li>
+        <li><a href="#">Link3</a></li>
+        <li><a href="#">Link4</a></li>
+      </ul>
+    </section>
+  </nav>
+
+
+</div>
