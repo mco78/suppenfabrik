@@ -36,3 +36,10 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+gem "rspec-rails", ">= 2.11.0", :group => [:development, :test]
+gem "capybara", ">= 1.1.2", :group => :test
+gem "email_spec", ">= 1.2.1", :group => :test
+gem "compass-rails", ">= 1.0.3", :group => :assets
+gem "zurb-foundation", ">= 3.1.1", :group => :assets
+gem "devise", ">= 2.1.2"
