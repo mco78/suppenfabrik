@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121011191625) do
+ActiveRecord::Schema.define(:version => 20121014102141) do
+
+  create_table "shifts", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "start"
+    t.datetime "stop"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

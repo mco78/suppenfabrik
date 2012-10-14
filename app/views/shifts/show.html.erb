@@ -1,0 +1,20 @@
+<div>
+	<p>
+		<strong>User-ID:</strong>
+		<%= @shift.user_id %>
+	</p>
+
+	<p>
+		<strong>Start:</strong>
+		<%= @shift.start.strftime("%d.%m.%y %H:%M") %>
+	</p>
+
+	<p>
+		<strong>Stop:</strong>
+		<%= @shift.stop.strftime("%d.%m.%y %H:%M") %>
+	</p>
+
+	<%= link_to 'bearbeiten', edit_shift_path(@shift) %> |
+	<%= link_to 'zurück', shifts_path %>
+
+</div>

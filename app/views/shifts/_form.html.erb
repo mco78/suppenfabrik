@@ -1,0 +1,53 @@
+<%= form_for(@shift) do |f| %>
+	<fieldset>
+		<% if @shift.errors.any? %>
+    	<div id="error_explanation">
+    		<h2><%= pluralize(@shift.errors.count, "error") %> prohibited this shift from being saved:</h2>
+	      	<ul>
+	      		<% @shift.errors.full_messages.each do |msg| %>
+	        		<li><%= msg %></li>
+	      		<% end %>
+	      	</ul>
+	    </div>
+	  	<% end %>
+
+	  	<div class="row">
+	  		<div class="two mobile-one columns">
+	  			<%= f.label :user_id, :class => "right inline" %>
+	  		</div> 
+	  		<div class="ten mobile-three columns">
+	  			<%= f.number_field :user_id, :class => "eight"%>
+	  		</div>
+	  	</div>
+
+	  	<div class="row">
+	  		<div class="two mobile-one columns">
+	  			<%= f.label :start, :class => "right inline" %>
+	  		</div> 
+	  		<div class="six mobile-three columns">
+	  			<%= f.date_select :start, {}, {:class => "three"} %>
+	  			<%= f.time_select :start, {}, {:class => "three"} %>
+	  		</div>
+	  	</div>
+
+	  	<div class="row">
+	  		<div class="two mobile-one columns">
+	  			<%= f.label :stop, :class => "right inline" %>
+	  		</div> 
+	  		<div class="six mobile-three columns">
+	  			<%= f.date_select :stop, {}, {:class => "three"} %>
+	  			<%= f.time_select :stop, {}, {:class => "three"} %>
+	  		</div>
+	  	</div>
+
+	  	<div class="row">
+	  		<div class="two columns offset-by-two">
+			  	<div class="actions">
+			    <%= f.submit "speichern", :class => "regular button" %>
+			  	</div>
+			</div>
+	  	</div>
+	</fieldset>
+	
+
+<% end %>

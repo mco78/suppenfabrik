@@ -1,0 +1,33 @@
+<h3>Übersicht Schichten</h3>
+
+<table>
+	<thead>
+		<tr>
+			<th>Schicht ID</th>
+			<th>User ID</th>
+			<th>Start</th>
+			<th>Stop</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @shifts.each do |shift| %>
+			<tr>
+				<td><%= shift.id %></td>
+				<td><%= shift.user_id %></td>
+				<td><%= shift.start.strftime("%d.%m.%y %H:%M") %></td>
+				<td><%= shift.stop.strftime("%d.%m.%y %H:%M") %></td>
+				<td><%= link_to 'ansehen', shift %></td>
+				<td><%= link_to 'bearbeiten', edit_shift_path(shift) %></td>
+				<td><%= link_to 'löschen', shift, :confirm => 'Sicher?', :method => :delete %></td>
+			</tr>
+		<% end %>
+	</tbody>
+	
+	
+</table>
+
+<%= link_to 'Neue Schicht', new_shift_path %>
+
