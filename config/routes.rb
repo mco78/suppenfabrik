@@ -4,5 +4,17 @@ Suppenfabrik::Application.routes.draw do
   
   devise_for :users
 
-  resources :shifts
+  resources :shifts do
+  	member do
+  		get 'stop'
+  	end
+
+  	collection do
+    	get 'start'
+  	end
+  end
+
+
+  match '/timetracking', :to => 'shifts#timetracking'
+
 end

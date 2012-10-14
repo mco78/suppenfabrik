@@ -6,12 +6,17 @@
 
 	<p>
 		<strong>Start:</strong>
+
 		<%= @shift.start.strftime("%d.%m.%y %H:%M") %>
 	</p>
 
 	<p>
 		<strong>Stop:</strong>
-		<%= @shift.stop.strftime("%d.%m.%y %H:%M") %>
+		<% if @shift.stop.nil? %>
+			--
+		<% else %>
+			<%= @shift.stop.strftime("%d.%m.%y %H:%M") %>
+		<% end %>
 	</p>
 
 	<%= link_to 'bearbeiten', edit_shift_path(@shift) %> |

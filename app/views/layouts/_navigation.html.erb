@@ -11,6 +11,7 @@
     <section>
       <ul class="left">
         <% if user_signed_in? %>
+          <li> <%= link_to 'Zeiterfassung', timetracking_path %></li>
           <li>
           <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>        
           </li>

@@ -4,7 +4,7 @@
 	<thead>
 		<tr>
 			<th>Schicht ID</th>
-			<th>User ID</th>
+			<th>Mitarbeiter</th>
 			<th>Start</th>
 			<th>Stop</th>
 			<th></th>
@@ -16,9 +16,14 @@
 		<% @shifts.each do |shift| %>
 			<tr>
 				<td><%= shift.id %></td>
-				<td><%= shift.user_id %></td>
+				<td><%= User.find(shift.user_id).name %></td>
 				<td><%= shift.start.strftime("%d.%m.%y %H:%M") %></td>
-				<td><%= shift.stop.strftime("%d.%m.%y %H:%M") %></td>
+				<td>
+				<% if shift.stop.nil? %>
+					--
+				<% else %>
+					<%= shift.stop.strftime("%d.%m.%y %H:%M") %>
+				<% end %>
 				<td><%= link_to 'ansehen', shift %></td>
 				<td><%= link_to 'bearbeiten', edit_shift_path(shift) %></td>
 				<td><%= link_to 'löschen', shift, :confirm => 'Sicher?', :method => :delete %></td>

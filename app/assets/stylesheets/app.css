@@ -16,3 +16,20 @@ div#home-logo {
 div#welcome {
 	text-align: center;
 }
+
+/*Timetracking*/
+
+div#start-stop {
+	padding: 3em 0 3em 0;
+}
+
+.button.xlarge { 
+	font-size: 20px; 
+	padding: 20px 40px 20px; 
+	margin-bottom: 0.5em;
+}
+
+p#button-info {
+	/*margin-top: 1em;*/
+	font-size: 9px;
+}

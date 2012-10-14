@@ -25,20 +25,20 @@
 	  			<%= f.label :start, :class => "right inline" %>
 	  		</div> 
 	  		<div class="six mobile-three columns">
-	  			<%= f.date_select :start, {}, {:class => "three"} %>
-	  			<%= f.time_select :start, {}, {:class => "three"} %>
-	  		</div>
-	  	</div>
+				<%= f.datetime_select :start , {}, {:class => "three"} %>
+			</div>
+			<div class="one"></div>
+		</div>
 
-	  	<div class="row">
+		<div class="row">
 	  		<div class="two mobile-one columns">
 	  			<%= f.label :stop, :class => "right inline" %>
 	  		</div> 
 	  		<div class="six mobile-three columns">
-	  			<%= f.date_select :stop, {}, {:class => "three"} %>
-	  			<%= f.time_select :stop, {}, {:class => "three"} %>
-	  		</div>
-	  	</div>
+				<%= f.datetime_select :stop , {:include_blank => true}, {:class => "three"} %>
+			</div>
+			<div class="one"></div>
+		</div>
 
 	  	<div class="row">
 	  		<div class="two columns offset-by-two">

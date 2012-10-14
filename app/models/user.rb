@@ -6,4 +6,18 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
   
+  has_many :shifts
+
+  def start_shift
+  	Shift.create(	:user_id => self.id,
+  					:start => Time.now)
+  end
+
+  def end_shift(shift)
+  	@shift = shift
+  	@shift.stop = Time.now
+  	@shift.save
+  end
+
+
 end

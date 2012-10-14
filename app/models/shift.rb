@@ -3,4 +3,9 @@ class Shift < ActiveRecord::Base
 
   validates :user_id,	:presence => true
   validates :start,		:presence => true
+
+  belongs_to :user
+
+  
+
 end
