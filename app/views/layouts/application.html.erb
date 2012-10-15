@@ -24,8 +24,11 @@
         <%= render 'layouts/messages' %>
       </header>
       <div class="row">
-        <div class="twelve columns">
+        <div class="nine columns">
           <%= yield %>
+        </div>
+        <div class="three columns">
+          <%= render 'layouts/sidebar' %>
         </div>
       </div> 
       <footer>

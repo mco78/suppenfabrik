@@ -8,16 +8,12 @@ class ShiftsController < ApplicationController
 		@user = current_user
 
 		if @user.shifts.empty?
-			@status = "not working"
 		else
 			if @user.shifts.all(:order => :start).last.stop.nil?
-				#schicht läuft noch
 				@current_shift = @user.shifts.all(:order => :start).last
 			else
-				#neue schicht
 				@current_shift = nil
 				@last_shift = @user.shifts.all(:order => :start).last
-				@status = "not working"
 			end
 		end
 		
@@ -26,6 +22,7 @@ class ShiftsController < ApplicationController
 	def start
 		@user = current_user
 		@user.start_shift
+		flash[:success] = "Schicht gestartet um " + Time.now.strftime("%H:%M") + "."
 		redirect_to timetracking_path
 	end
 
@@ -33,12 +30,13 @@ class ShiftsController < ApplicationController
 		@user = current_user
 		@shift = Shift.find(params[:id])
 		@user.end_shift(@shift)
+		flash[:success] = "Schicht beendet um " + Time.now.strftime("%H:%M") + "."
 		redirect_to timetracking_path
 	end
 
 	def index
 		@title = "Übersicht Schichten"
-		@shifts = Shift.all.sort_by &:start
+		@shifts = Shift.all(:order => :start).reverse
 	end
 
 	def show

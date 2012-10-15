@@ -5,6 +5,12 @@ div#messages {
 	margin-top: 10px;
 }
 
+/*Sidebar*/
+
+div#userinfos {
+	margin-top: 3em;
+}
+
 /*Home*/
 
 div#home-logo {
