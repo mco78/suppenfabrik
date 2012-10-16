@@ -28,10 +28,12 @@
   <div class="twelve columns">
     <div class="panel" id="zusatzinfos">
       <h5>Info:</h5>
-      <% if @current_shift.nil? %>
-        <p>Letzte Schicht: <%= @last_shift.start.strftime("%d.%m.%y %H:%M") %> bis <%= @last_shift.stop.strftime("%d.%m.%y %H:%M") %></p>
-      <% else %>
-        <p>Aktuelle Schicht hat um <%= @current_shift.start.strftime("%d.%m.%y %H:%M") %> begonnen.</p>
+      <% unless @user.shifts.count == 0 %>
+        <% if @current_shift.nil? %>
+          <p>Letzte Schicht: <%= @last_shift.start.strftime("%d.%m.%y %H:%M") %> bis <%= @last_shift.stop.strftime("%d.%m.%y %H:%M") %></p>
+        <% else %>
+          <p>Aktuelle Schicht hat um <%= @current_shift.start.strftime("%d.%m.%y %H:%M") %> begonnen.</p>
+        <% end %>
       <% end %>
     </div>
   </div>
