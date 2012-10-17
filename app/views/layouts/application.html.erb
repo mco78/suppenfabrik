@@ -12,7 +12,10 @@
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
     <script type="text/javascript">
-
+      // fix mobile safari bug
+      $.rails.href = function(element) {
+        return element.data('href') || element.attr('href');
+      }
     </script>
   </head>
   <body>
