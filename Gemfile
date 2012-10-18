@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.3'
 gem 'jquery-rails'
 gem "devise", ">= 2.1.2"
+gem "zurb-foundation", ">= 3.1.1"
 
 group :development, :test do
 	gem 'sqlite3', '1.3.5'
@@ -11,7 +12,6 @@ end
 gem "capybara", ">= 1.1.2", :group => :test
 gem "email_spec", ">= 1.2.1", :group => :test
 
-gem "zurb-foundation", ">= 3.1.1"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -22,6 +22,6 @@ end
 
 
 group :production do
-  gem 'therubyracer-heroku', '0.8.1.pre3' # you will need this too
+  gem 'therubyracer-heroku', '0.8.1.pre3' 
   gem 'pg'
 end
