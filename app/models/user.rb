@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :trackable
   
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me,
+                  :user_management, :time_tracking, :time_tracking_admin
   
   validates_presence_of :name
   validates_uniqueness_of :name

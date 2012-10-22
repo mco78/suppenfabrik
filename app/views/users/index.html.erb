@@ -1,0 +1,30 @@
+<h3>Übersicht User</h3>
+
+<table>
+	<thead>
+		<th>Name</th>
+		<!-- <th>Erstellt am</th> -->
+		<th>User Management</th>
+		<th>Zeiterfassung</th>
+		<th>Zeiterfassung Verwaltung</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+			<tr>
+				<td><%= user.name %></td>
+				<!-- <td><%= user.created_at.strftime("%d.%m.%y %H:%M") %></td> -->
+				<td><%= user.user_management %></td>
+				<td><%= user.time_tracking %></td>
+				<td><%= user.time_tracking_admin %></td>
+				<td><%= link_to 'anzeigen', user %></td>
+				<td><%= link_to 'bearbeiten', edit_user_path(user) %></td>
+				<td><%= link_to 'löschen', user, :confirm => 'Sicher?', :method => :delete %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= link_to 'Neuer User', new_user_path %>

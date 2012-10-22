@@ -14,6 +14,8 @@ Suppenfabrik::Application.routes.draw do
   	end
   end
 
+  resources :users
+
 
   match '/timetracking', :to => 'shifts#timetracking'
 
