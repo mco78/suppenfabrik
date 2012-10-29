@@ -23,11 +23,11 @@
               <li> <%= link_to 'User Management', users_path %></li>
           <% end %>
           <li>
-          <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>        
+          <%= active_link_to 'Logout', destroy_user_session_path, :method=>'delete' %>        
           </li>
         <% else %>
           <li>
-          <%= link_to 'Login', new_user_session_path %>  
+          <%= active_link_to 'Login', new_user_session_path %>  
           </li>
         <% end %>
       </ul>

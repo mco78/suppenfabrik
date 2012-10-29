@@ -5,6 +5,10 @@ div#messages {
 	margin-top: 10px;
 }
 
+.top-bar ul > li.active > a:not(.button) {
+	color: red;
+}
+
 /*Sidebar*/
 
 div#userinfos {
