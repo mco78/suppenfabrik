@@ -16,7 +16,13 @@
 		<% @shifts.each do |shift| %>
 			<tr>
 				<td><%= shift.id %></td>
-				<td><%= User.find(shift.user_id).name %></td>
+				<td>
+					<% if User.exists?(shift.user_id) %>
+						<%= User.find(shift.user_id).name %>
+					<% else %>
+						User gelöscht
+					<% end %>
+				</td>
 				<td><%= shift.start.strftime("%d.%m.%y %H:%M") %></td>
 				<td>
 				<% if shift.stop.nil? %>

@@ -12,8 +12,13 @@
       <ul class="left">
         <% if user_signed_in? %>
           <% if current_user.time_tracking == true %>
-              <li> <%= link_to 'Zeiterfassung', timetracking_path %></li>
+            <li> <%= link_to 'Zeiterfassung', timetracking_path %></li>
           <% end %>
+
+          <% if current_user.time_tracking_admin == true %>
+              <li> <%= link_to 'Zeiterf.Verwaltung', shifts_path %></li>
+          <% end %>
+              
           <% if current_user.user_management == true %>
               <li> <%= link_to 'User Management', users_path %></li>
           <% end %>

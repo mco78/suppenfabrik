@@ -2,7 +2,8 @@
 class ShiftsController < ApplicationController
 
 	before_filter :authenticate_user!
-	before_filter :time_tracking_rights
+	before_filter :time_tracking_rights, :only => [:timetracking, :start, :stop]
+	before_filter :time_tracking_admin_rights, :only => [:index, :show, :new, :edit, :create, :update, :destroy]
 
 	def timetracking
 		@title = 'Zeiterfassung'
