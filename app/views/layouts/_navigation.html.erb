@@ -11,8 +11,12 @@
     <section>
       <ul class="left">
         <% if user_signed_in? %>
-          <li> <%= link_to 'Zeiterfassung', timetracking_path %></li>
-          <li> <%= link_to 'User Management', users_path %></li>
+          <% if current_user.time_tracking == true %>
+              <li> <%= link_to 'Zeiterfassung', timetracking_path %></li>
+          <% end %>
+          <% if current_user.user_management == true %>
+              <li> <%= link_to 'User Management', users_path %></li>
+          <% end %>
           <li>
           <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>        
           </li>

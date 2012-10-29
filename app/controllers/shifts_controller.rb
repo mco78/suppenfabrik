@@ -2,6 +2,7 @@
 class ShiftsController < ApplicationController
 
 	before_filter :authenticate_user!
+	before_filter :time_tracking_rights
 
 	def timetracking
 		@title = 'Zeiterfassung'
