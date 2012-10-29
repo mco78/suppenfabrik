@@ -5,8 +5,8 @@ div#messages {
 	margin-top: 10px;
 }
 
-.top-bar ul > li.active > a:not(.button) {
-	color: red;
+.top-bar ul > li > a.active {
+	background: black;
 }
 
 /*Sidebar*/
