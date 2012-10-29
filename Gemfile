@@ -3,6 +3,7 @@ gem 'rails', '3.2.3'
 gem 'jquery-rails'
 gem "devise", ">= 2.1.2"
 gem "zurb-foundation", ">= 3.1.1"
+gem 'active_link_to'
 
 group :development, :test do
 	gem 'sqlite3', '1.3.5'
