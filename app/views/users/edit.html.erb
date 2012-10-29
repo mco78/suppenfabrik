@@ -1,6 +1,6 @@
 <h1>User bearbeiten</h1>
 
-<%= form_for(@user) do |f| %>
+<%= form_for(@user, :html => { :class => "custom"} ) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -21,20 +21,24 @@
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email %>
-  </div>
+  </div>	
 
-  <div class="field">
-    <%= f.label :user_management %><br />
-    <%= f.check_box :user_management %>
-  </div>
-  <div class="field">
-    <%= f.label :time_tracking %><br />
-    <%= f.check_box :time_tracking %>
-  </div>
-  <div class="field">
-    <%= f.label :time_tracking_admin %><br />
-    <%= f.check_box :time_tracking_admin %>
-  </div>
+  <fieldset>
+    <legend>Benutzerrechte</legend>
+    <div class="row">
+      <div class="four columns">
+        <%= f.label :user_management %><%= f.check_box :user_management %>
+      </div>
+      <div class="four columns">
+        <%= f.label :time_tracking %><%= f.check_box :time_tracking %>
+      </div>
+      <div class="four columns">
+        <%= f.label :time_tracking_admin %><%= f.check_box :time_tracking_admin %>
+      </div>
+    </div>
+  </fieldset>
+  <br>
+  <br>
   <div class="actions">
     <%= f.submit %>
   </div>

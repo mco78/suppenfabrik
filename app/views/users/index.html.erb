@@ -16,9 +16,33 @@
 			<tr>
 				<td><%= user.name %></td>
 				<!-- <td><%= user.created_at.strftime("%d.%m.%y %H:%M") %></td> -->
-				<td><%= user.user_management %></td>
-				<td><%= user.time_tracking %></td>
-				<td><%= user.time_tracking_admin %></td>
+				<td>
+					<% if user.user_management == true %>
+						<span class="success label">
+					<% else %>
+						<span class="alert label">
+					<% end %>
+					<%= user.user_management %>
+					</span>
+				</td>
+				<td>
+					<% if user.time_tracking == true %>
+						<span class="success label">
+					<% else %>
+						<span class="alert label">
+					<% end %>
+					<%= user.time_tracking %>
+					</span>
+				</td>
+				<td>
+					<% if user.time_tracking_admin == true %>
+						<span class="success label">
+					<% else %>
+						<span class="alert label">
+					<% end %>
+					<%= user.time_tracking_admin %>
+					</span>
+				</td>
 				<td><%= link_to 'anzeigen', user %></td>
 				<td><%= link_to 'bearbeiten', edit_user_path(user) %></td>
 				<td><%= link_to 'löschen', user, :confirm => 'Sicher?', :method => :delete %></td>
