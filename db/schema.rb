@@ -11,12 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121022183445) do
+ActiveRecord::Schema.define(:version => 20121101095749) do
 
   create_table "shifts", :force => true do |t|
     t.integer  "user_id"
     t.datetime "start"
     t.datetime "stop"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "stores", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -35,9 +41,8 @@ ActiveRecord::Schema.define(:version => 20121022183445) do
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.string   "name"
-    t.boolean  "user_management",        :default => false, :null => false
+    t.boolean  "admin",                  :default => false, :null => false
     t.boolean  "time_tracking",          :default => false, :null => false
-    t.boolean  "time_tracking_admin",    :default => false, :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

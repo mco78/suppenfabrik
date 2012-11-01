@@ -3,7 +3,7 @@
 class UsersController < ApplicationController
 
 	before_filter :authenticate_user!
-	before_filter :user_management_rights
+	before_filter :admin_rights
 
 	def index
 		@title = "Übersicht User"

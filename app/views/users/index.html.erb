@@ -4,9 +4,8 @@
 	<thead>
 		<th>Name</th>
 		<!-- <th>Erstellt am</th> -->
-		<th>User Management</th>
+		<th>Admin</th>
 		<th>Zeiterfassung</th>
-		<th>Verwaltung Zeiterfassung</th>
 		<th></th>
 		<th></th>
 		<th></th>
@@ -17,12 +16,12 @@
 				<td><%= user.name %></td>
 				<!-- <td><%= user.created_at.strftime("%d.%m.%y %H:%M") %></td> -->
 				<td>
-					<% if user.user_management == true %>
+					<% if user.admin == true %>
 						<span class="success label">
 					<% else %>
 						<span class="alert label">
 					<% end %>
-					<%= user.user_management %>
+					<%= user.admin %>
 					</span>
 				</td>
 				<td>
@@ -32,15 +31,6 @@
 						<span class="alert label">
 					<% end %>
 					<%= user.time_tracking %>
-					</span>
-				</td>
-				<td>
-					<% if user.time_tracking_admin == true %>
-						<span class="success label">
-					<% else %>
-						<span class="alert label">
-					<% end %>
-					<%= user.time_tracking_admin %>
 					</span>
 				</td>
 				<td><%= link_to 'anzeigen', user %></td>

@@ -12,10 +12,9 @@
 </p>
 
 <p><strong>Rechte:</strong><br>
-	User Management: <%= @user.user_management %> <br>
+	Admin: <%= @user.user_management %> <br>
 	Zeiterfassung: <%= @user.time_tracking %> <br>
-	Verwaltung Zeiterfassung: <%= @user.time_tracking_admin %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'bearbeiten', edit_user_path(@user) %> |
+<%= link_to 'zurück', users_path %>

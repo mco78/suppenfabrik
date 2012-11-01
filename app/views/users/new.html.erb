@@ -37,13 +37,10 @@
     <legend>Benutzerrechte</legend>
     <div class="row">
       <div class="four columns">
-        <%= f.label :user_management %><%= f.check_box :user_management %>
+        <%= f.label :admin %><%= f.check_box :admin %>
       </div>
       <div class="four columns">
         <%= f.label :time_tracking %><%= f.check_box :time_tracking %>
-      </div>
-      <div class="four columns">
-        <%= f.label :time_tracking_admin %><%= f.check_box :time_tracking_admin %>
       </div>
     </div>
   </fieldset>
@@ -54,4 +51,4 @@
 <% end %>
 
 
-<%= link_to 'Back', users_path %>
+<%= link_to 'zurück', users_path %>

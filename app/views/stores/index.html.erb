@@ -1,0 +1,23 @@
+<h3>Übersicht Filiale</h3>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stores.each do |store| %>
+  <tr>
+    <td><%= store.name %></td>
+    <td><%= link_to 'anzeigen', store %></td>
+    <td><%= link_to 'bearbeiten', edit_store_path(store) %></td>
+    <td><%= link_to 'löschen', store, confirm: 'sicher?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Neue Filiale', new_store_path %>

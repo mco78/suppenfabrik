@@ -1,5 +1,7 @@
 Suppenfabrik::Application.routes.draw do
   
+  resources :stores
+
   root :to => "home#index"
   
   devise_for :users
@@ -15,6 +17,8 @@ Suppenfabrik::Application.routes.draw do
   end
 
   resources :users
+
+  resources :stores
 
 
   match '/timetracking', :to => 'shifts#timetracking'

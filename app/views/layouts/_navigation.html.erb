@@ -10,25 +10,26 @@
     </ul>
     <section>
       <ul class="left">
+        <li class="divider"></li>
         <% if user_signed_in? %>
           <% if current_user.time_tracking == true %>
             <li> <%= active_link_to 'Zeiterfassung', timetracking_path %></li>
+            <li class="divider"></li>
           <% end %>
-
-          <% if current_user.time_tracking_admin == true %>
-              <li> <%= active_link_to 'Zeiterf.Verwaltung', shifts_path %></li>
+          <% if current_user.admin == true %>
+            <li class="has-dropdown">
+              <a href="#" class="">Verwaltung</a>
+              <ul class="dropdown">
+                <li><%= active_link_to 'Benutzer', users_path %></li>
+                <li><%= active_link_to 'Filialen', stores_path %></li>
+                <li><%= active_link_to 'Zeiterfassung', shifts_path %></li>
+              </ul>
+            </li>
+            <li class="divider"></li>
           <% end %>
-              
-          <% if current_user.user_management == true %>
-              <li> <%= active_link_to 'User Management', users_path %></li>
-          <% end %>
-          <li>
-          <%= active_link_to 'Logout', destroy_user_session_path, :method=>'delete' %>        
-          </li>
+          <li><%= active_link_to 'Logout', destroy_user_session_path, :method => 'delete' %>  </li>
         <% else %>
-          <li>
-          <%= active_link_to 'Login', new_user_session_path %>  
-          </li>
+          <li><%= active_link_to 'Login', new_user_session_path %></li>
         <% end %>
       </ul>
     </section>
