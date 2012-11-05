@@ -5,6 +5,7 @@
 		<tr>
 			<th>Schicht ID</th>
 			<th>Mitarbeiter</th>
+			<th>Filiale</th>
 			<th>Start</th>
 			<th>Stop</th>
 			<th></th>
@@ -21,6 +22,13 @@
 						<%= User.find(shift.user_id).name %>
 					<% else %>
 						User gelöscht
+					<% end %>
+				</td>
+				<td> 
+					<% if Store.exists?(shift.store_id) %>
+						<%= Store.find(shift.store_id).name %>
+					<% else %>
+						--
 					<% end %>
 				</td>
 				<td><%= shift.start.strftime("%d.%m.%y %H:%M") %></td>

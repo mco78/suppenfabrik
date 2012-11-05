@@ -1,40 +1,55 @@
 <h3>Zeiterfassung</h3>
 
 <p>Viel Spaß beim Arbeiten!</p>
+
 <div class="row" id="start-stop">
-  <div class="two columns"></div>
-  <div class="three columns" id="start">
-    <% if @current_shift.nil? %>
-      <%= link_to 'Start', { :action => :start }, {:class => "xlarge success button"} %>
-    <% else %>
-      <a href="stop.html" class="disabled xlarge success button">Start</a>
-    <% end %>
-  </div>
+	<div class="two columns"></div>
+	<% if @current_shift.nil? %>
+		<div class="three columns" id="start">
+			<%= form_for @shift, :url => { :action => "start" } do |f|%>
+				<strong>Filiale:</strong>
+				<% if @last_shift.nil? %>
+					<%= f.select :store_id, options_from_collection_for_select(@stores, "id", "name"), :prompt => "Bitte auswählen" %>
+				<% else %>
+					<%= f.select :store_id, options_from_collection_for_select(@stores, "id", "name", :selected => @last_shift.store_id) %>
+				<% end %>
+				<br><br>
+				<%= f.hidden_field :user_id, :value => current_user.id %>
+				<%= f.hidden_field :start, :value => Time.now %>
+				<%= submit_tag 'Start', { :class => "xlarge success button"} %>
+		 	<% end %>
+		</div>
+		<div class="two columns"></div> 
+		<div class="three columns" id="stop">
+			<a href="#" class="disabled xlarge alert button">Stop</a>
+			<p id="button-info">Nach dem Klick werden 5 Minuten zusätzlich gutgeschrieben</p>
+		</div>
+  		<div class="two columns"></div>
 
-  <div class="two columns"></div> 
-  <div class="three columns" id="stop">
-    <% if @current_shift.nil? %>
-      <a href="#" class="disabled xlarge alert button">Stop</a>
-    <% else %>
-      <%= link_to 'Stop', stop_shift_path(@current_shift), {:class => "xlarge alert button"} %>
-    <% end %>
-
-    <p id="button-info">Nach dem Klick werden 5 Minuten zusätzlich gutgeschrieben</p>
-  </div>
-  <div class="two columns"></div> 
+	<% else %>
+		<div class="three columns" id="start">
+  			<a href="#" class="disabled xlarge success button">Start</a>
+  		</div>
+  		<div class="two columns"></div> 
+		<div class="three columns" id="stop">
+			<%= link_to 'Stop', stop_shifts_path, {:class => "xlarge alert button"} %>
+			<p id="button-info">Nach dem Klick werden 5 Minuten zusätzlich gutgeschrieben</p>
+		</div>
+		<div class="two columns"></div>
+	<% end %>
 </div>
 
 <div class="row">
-  <div class="twelve columns">
-    <div class="panel" id="zusatzinfos">
-      <h5>Info:</h5>
-      <% unless @user.shifts.count == 0 %>
-        <% if @current_shift.nil? %>
-          <p>Letzte Schicht: <%= @last_shift.start.strftime("%d.%m.%y %H:%M") %> bis <%= @last_shift.stop.strftime("%d.%m.%y %H:%M") %></p>
-        <% else %>
-          <p>Aktuelle Schicht hat um <%= @current_shift.start.strftime("%d.%m.%y %H:%M") %> begonnen.</p>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
+	<div class="twelve columns">
+		<div class="panel" id="zusatzinfos">
+	  		<h5>Info:</h5>
+	  		<% unless @user.shifts.count == 0 %>
+				<% if @current_shift.nil? %>
+		  			<p>Letzte Schicht: <%= @last_shift.start.strftime("%d.%m.%y %H:%M") %> bis <%= @last_shift.stop.strftime("%d.%m.%y %H:%M") %></p>
+				<% else %>
+		  			<p>Aktuelle Schicht hat um <%= @current_shift.start.strftime("%d.%m.%y %H:%M") %> begonnen.</p>
+				<% end %>
+	  		<% end %>
+		</div>
+  	</div>
 </div>

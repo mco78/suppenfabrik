@@ -19,14 +19,16 @@
         <%= render 'layouts/messages' %>
       </header>
       <div class="row">
-        <div class="nine columns">
+        <div class="twelve columns">
           <%= yield %>
-        </div>
-        <div class="three columns">
-          <%= render 'layouts/sidebar' %>
         </div>
       </div> 
       <footer>
+        <div class="row">
+          <div class="twelve columns">
+            <%= render 'layouts/footer' %>
+          </div>
+        </div>
       </footer>
     </div> <!--! end of #container -->
     <script src="/assets/foundation/app.js"></script>

@@ -8,6 +8,7 @@ class ShiftsController < ApplicationController
 	def timetracking
 		@title = 'Zeiterfassung'
 		@user = current_user
+		@stores = Store.all
 
 		if @user.shifts.empty?
 		else
@@ -18,19 +19,27 @@ class ShiftsController < ApplicationController
 				@last_shift = @user.shifts.all(:order => :start).last
 			end
 		end
+
+		if @current_shift.nil?
+			@shift = Shift.new
+		end
 		
 	end
 
 	def start
-		@user = current_user
-		@user.start_shift
-		flash[:success] = "Schicht gestartet um " + Time.now.strftime("%H:%M") + "."
-		redirect_to timetracking_path
+		@shift = Shift.new(params[:shift])
+		if @shift.save
+			flash[:success] = "Schicht gestartet um " + Time.now.strftime("%H:%M") + "."
+			redirect_to timetracking_path
+		else
+			flash[:error] = "Fehler!"
+			redirect_to timetracking_path
+		end
 	end
 
 	def stop
 		@user = current_user
-		@shift = Shift.find(params[:id])
+		@shift = @user.shifts.all(:order => :start).last
 		@user.end_shift(@shift)
 		flash[:success] = "Schicht beendet um " + Time.now.strftime("%H:%M") + "."
 		redirect_to timetracking_path
@@ -49,6 +58,7 @@ class ShiftsController < ApplicationController
 	def new
 		@title = "Schicht erstellen"
 		@shift = Shift.new
+		@stores = Store.all
 	end
 
 	def edit

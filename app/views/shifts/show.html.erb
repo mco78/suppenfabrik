@@ -1,7 +1,22 @@
+<h3>Schicht Detailansicht</h3>
+
 <div>
 	<p>
-		<strong>User-ID:</strong>
-		<%= @shift.user_id %>
+		<strong>User:</strong>
+		<% if User.exists?(@shift.user_id) %>
+			<%= User.find(@shift.user_id).name %>
+		<% else %>
+			User gelöscht
+		<% end %>
+	</p>
+
+	<p>
+		<strong>Filiale:</strong>
+		<% if Store.exists?(@shift.store_id) %>
+			<%= Store.find(@shift.store_id).name %>
+		<% else %>
+			--
+		<% end %>
 	</p>
 
 	<p>

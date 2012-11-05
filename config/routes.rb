@@ -7,12 +7,13 @@ Suppenfabrik::Application.routes.draw do
   devise_for :users
 
   resources :shifts do
-  	member do
-  		get 'stop'
-  	end
+  	# member do
+  	# 	get 'stop'
+  	# end
 
   	collection do
-    	get 'start'
+    	post 'start'
+      get 'stop'
   	end
   end
 

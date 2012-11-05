@@ -1,0 +1,6 @@
+<% if user_signed_in? %>
+	<div class="panel" id="userinfos">
+		<p><strong>Benutzer:</strong> <%= current_user.name %><br>
+		<strong>angemeldet seit:</strong> <%= current_user.current_sign_in_at.strftime("%d.%m.%y %H:%M") %></p>
+	</div>
+<% end %>

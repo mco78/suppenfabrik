@@ -37,6 +37,13 @@ div#start-stop {
 	font-size: 20px; 
 	padding: 20px 40px 20px; 
 	margin-bottom: 0.5em;
+	color: white;
+}
+
+input.button.xlarge { 
+	font-size: 20px; 
+	padding: 20px 40px 20px; 
+	margin-bottom: 0.5em;
 }
 
 p#button-info {
