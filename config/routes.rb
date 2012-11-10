@@ -1,5 +1,7 @@
 Suppenfabrik::Application.routes.draw do
   
+  resources :daily_sales
+
   resources :stores
 
   root :to => "home#index"

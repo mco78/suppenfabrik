@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   # :registerable, :recoverable,  :rememberable, :token_authenticatable, :encryptable, :confirmable, :lockable, :validatable, :timeoutable and :omniauthable
   devise :database_authenticatable, :trackable
   
+  has_many :shifts
+  has_many :sales
+
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me,
                   :time_tracking, :admin
@@ -10,7 +13,7 @@ class User < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
 
-  has_many :shifts
+  
 
   # def start_shift(store_id)
   # 	Shift.create(	:user_id => self.id, :store_id => store_id,

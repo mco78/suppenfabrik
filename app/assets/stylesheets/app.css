@@ -58,5 +58,18 @@ fieldset div.row div.four {
 	margin-bottom: 1em;
 }
 
+/*Daily Sales Form*/
 
+.daily_sales_input select {
+	margin: 8px 0px 8px 0px; 
+}
+
+a.remove_sale {
+	margin-top: 26px;
+}
+
+div.add_sale {
+	margin-top: 12px;
+	margin-bottom: 24px;
+}
 

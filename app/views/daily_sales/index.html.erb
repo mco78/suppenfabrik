@@ -1,0 +1,31 @@
+<h1>Übersicht Tagesumsätze</h1>
+
+<table>
+  <tr>
+    <th>Datum</th>
+    <th>Filiale</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @daily_sales.each do |daily_sale| %>
+  <tr>
+    <td><%= daily_sale.date %></td>
+    <td><%= Store.find(daily_sale.store_id).name %></td>
+    <% sum = 0 %>
+    <% daily_sale.sales.each do |s| %>
+      <% sum += s.value %>
+    <% end %>
+    <td><%= number_with_precision(sum, :precision => 2) %></td>
+    <td><%= link_to 'Show', daily_sale %></td>
+    <td><%= link_to 'Edit', edit_daily_sale_path(daily_sale) %></td>
+    <td><%= link_to 'Destroy', daily_sale, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Daily sale', new_daily_sale_path %>

@@ -5,5 +5,6 @@ class Store < ActiveRecord::Base
   validates_uniqueness_of :name
 
   has_many :shifts
+  has_many :sales
   
 end
