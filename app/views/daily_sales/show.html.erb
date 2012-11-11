@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Date:</b>
+  <b>Datum:</b>
   <%= @daily_sale.date %>
 </p>
 
@@ -12,10 +12,10 @@
 
 <ol>
 	<% for sale in @daily_sale.sales %>
-		<li><%=h sale.product %>: <%=h number_to_currency(sale.value) %> </li>
+		<li><%=h sale.product %>: <%=h number_to_currency(sale.value) %> (Benutzer: <%= User.find(sale.user_id).name %>) </li>
 	<% end %>
 </ol>
 
 
-<%= link_to 'Edit', edit_daily_sale_path(@daily_sale) %> |
-<%= link_to 'Back', daily_sales_path %>
+<%= link_to 'bearbeiten', edit_daily_sale_path(@daily_sale), :class => "tiny round button" %>
+<%= link_to 'zurück', daily_sales_path, :class => "tiny round secondary button" %>

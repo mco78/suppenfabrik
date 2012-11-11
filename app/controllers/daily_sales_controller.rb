@@ -2,11 +2,23 @@
 class DailySalesController < ApplicationController
   
   before_filter :authenticate_user!
+  before_filter :daily_sales_rights, :only => [:index, :new, :show, :create]
+  #before_filter :admin_rights, :only => [:edit, :update, :destroy]
 
   # GET /daily_sales
   # GET /daily_sales.json
   def index
-    @daily_sales = DailySale.all
+    if current_user.admin?
+      @daily_sales = DailySale.all
+    else
+      sales = Sale.where(:user_id => current_user.id)
+      @daily_sales = []
+      sales.each do |sale|
+        unless @daily_sales.include?(DailySale.find(sale.daily_sale_id))
+          @daily_sales << DailySale.find(sale.daily_sale_id)
+        end
+      end
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -30,6 +42,7 @@ class DailySalesController < ApplicationController
   def new
     @daily_sale = DailySale.new
     6.times { @daily_sale.sales.build }
+
     @default_products = [ "Suppe 1 klein", "Suppe 1 groß", 
     					"Suppe 2 klein", "Suppe 2 groß", 
     					"Suppe 3 klein", "Suppe 3 groß"]
@@ -43,6 +56,11 @@ class DailySalesController < ApplicationController
   # GET /daily_sales/1/edit
   def edit
     @daily_sale = DailySale.find(params[:id])
+    own_sales = @daily_sale.sales.where(:user_id => current_user.id)
+    if own_sales.empty?
+      flash[:error] = "Zu bearbeitende Umsätze stammen nicht von dir!"
+      redirect_to daily_sales_path
+    end
   end
 
   # POST /daily_sales
@@ -81,11 +99,17 @@ class DailySalesController < ApplicationController
   # DELETE /daily_sales/1.json
   def destroy
     @daily_sale = DailySale.find(params[:id])
-    @daily_sale.destroy
+    own_sales = @daily_sale.sales.where(:user_id => current_user.id)
+    if own_sales.empty?
+      flash[:error] = "Zu bearbeitende Umsätze stammen nicht von dir!"
+      redirect_to daily_sales_path
+    else
+      @daily_sale.destroy
 
-    respond_to do |format|
-      format.html { redirect_to daily_sales_url }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to daily_sales_url }
+        format.json { head :no_content }
+      end
     end
   end
 end

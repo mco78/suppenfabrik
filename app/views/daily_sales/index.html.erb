@@ -1,5 +1,9 @@
 <h1>Übersicht Tagesumsätze</h1>
 
+<% unless current_user.admin %>
+  <p>Angezeigt werden nur die Tagesumsätze, welche von dir eingegeben wurden.</p>
+<% end %>
+
 <table>
   <tr>
     <th>Datum</th>
@@ -19,13 +23,13 @@
       <% sum += s.value %>
     <% end %>
     <td><%= number_with_precision(sum, :precision => 2) %></td>
-    <td><%= link_to 'Show', daily_sale %></td>
-    <td><%= link_to 'Edit', edit_daily_sale_path(daily_sale) %></td>
-    <td><%= link_to 'Destroy', daily_sale, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'anzeigen', daily_sale, :class => "tiny round secondary button" %></td>
+    <td><%= link_to 'bearbeiten', edit_daily_sale_path(daily_sale), :class => "tiny round secondary button" %></td>
+    <td><%= link_to 'löschen', daily_sale, confirm: 'Sicher?', method: :delete, :class => "tiny round secondary button" %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Daily sale', new_daily_sale_path %>
+<%= link_to 'Neuen Tagesumsatz eingeben', new_daily_sale_path, :class => "tiny round button" %>

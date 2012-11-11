@@ -14,7 +14,8 @@
 <p><strong>Rechte:</strong><br>
 	Admin: <%= @user.admin %> <br>
 	Zeiterfassung: <%= @user.time_tracking %> <br>
+	Tagesumsätze: <%= @user.daily_sales %> <br>
 </p>
 
-<%= link_to 'bearbeiten', edit_user_path(@user) %> |
-<%= link_to 'zurück', users_path %>
+<%= link_to 'bearbeiten', edit_user_path(@user), :class => "tiny round button" %> |
+<%= link_to 'zurück', users_path, :class => "tiny round secondary button" %>

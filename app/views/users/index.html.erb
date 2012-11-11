@@ -6,6 +6,7 @@
 		<!-- <th>Erstellt am</th> -->
 		<th>Admin</th>
 		<th>Zeiterfassung</th>
+		<th>Tagesumsätze</th>
 		<th></th>
 		<th></th>
 		<th></th>
@@ -33,12 +34,21 @@
 					<%= user.time_tracking %>
 					</span>
 				</td>
-				<td><%= link_to 'anzeigen', user %></td>
-				<td><%= link_to 'bearbeiten', edit_user_path(user) %></td>
-				<td><%= link_to 'löschen', user, :confirm => 'Sicher?', :method => :delete %></td>
+				<td>
+					<% if user.daily_sales == true %>
+						<span class="success label">
+					<% else %>
+						<span class="alert label">
+					<% end %>
+					<%= user.daily_sales %>
+					</span>
+				</td>
+				<td><%= link_to 'anzeigen', user, :class => "tiny round secondary button" %></td>
+				<td><%= link_to 'bearbeiten', edit_user_path(user), :class => "tiny round secondary button" %></td>
+				<td><%= link_to 'löschen', user, :confirm => 'Sicher?', :method => :delete, :class => "tiny round secondary button" %></td>
 			</tr>
 		<% end %>
 	</tbody>
 </table>
 
-<%= link_to 'Neuer User', new_user_path %>
+<%= link_to 'Neuer User', new_user_path, :class => "tiny round button" %>

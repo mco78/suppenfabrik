@@ -38,9 +38,9 @@
 				<% else %>
 					<%= shift.stop.strftime("%d.%m.%y %H:%M") %>
 				<% end %>
-				<td><%= link_to 'ansehen', shift %></td>
-				<td><%= link_to 'bearbeiten', edit_shift_path(shift) %></td>
-				<td><%= link_to 'löschen', shift, :confirm => 'Sicher?', :method => :delete %></td>
+				<td><%= link_to 'ansehen', shift , :class => "tiny round secondary button"%></td>
+				<td><%= link_to 'bearbeiten', edit_shift_path(shift), :class => "tiny round secondary button" %></td>
+				<td><%= link_to 'löschen', shift, :confirm => 'Sicher?', :method => :delete, :class => "tiny round secondary button" %></td>
 			</tr>
 		<% end %>
 	</tbody>
@@ -48,5 +48,5 @@
 	
 </table>
 
-<%= link_to 'Neue Schicht', new_shift_path %>
+<%= link_to 'Neue Schicht', new_shift_path, :class => "tiny round button" %>
 

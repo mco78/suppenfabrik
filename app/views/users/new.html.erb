@@ -33,22 +33,12 @@
     <%= f.password_field :password_confirmation %>
   </div>
 
-  <fieldset>
-    <legend>Benutzerrechte</legend>
-    <div class="row">
-      <div class="four columns">
-        <%= f.label :admin %><%= f.check_box :admin %>
-      </div>
-      <div class="four columns">
-        <%= f.label :time_tracking %><%= f.check_box :time_tracking %>
-      </div>
-    </div>
-  </fieldset>
+  <%= render "rights_form", :f => f %>
   
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "speichern", :class => "medium success button" %>
   </div>
 <% end %>
 
 
-<%= link_to 'zurück', users_path %>
+<%= link_to 'zurück', users_path, :class => "tiny round secondary button" %>

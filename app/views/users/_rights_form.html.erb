@@ -1,0 +1,14 @@
+<fieldset>
+  <legend>Benutzerrechte</legend>
+  <div class="row">
+    <div class="four columns">
+      <%= f.label :admin, "Admin" %><%= f.check_box :admin %>
+    </div>
+    <div class="four columns">
+      <%= f.label :time_tracking, "Zeiterfassung" %><%= f.check_box :time_tracking %>
+    </div>
+    <div class="four columns">
+      <%= f.label :daily_sales, "Tagesumsätze" %><%= f.check_box :daily_sales %>
+    </div>
+  </div>
+</fieldset>

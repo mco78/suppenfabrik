@@ -16,6 +16,10 @@
             <li> <%= active_link_to 'Zeiterfassung', timetracking_path %></li>
             <li class="divider"></li>
           <% end %>
+          <% if current_user.daily_sales == true %>
+            <li> <%= active_link_to 'Tagesumsätze', new_daily_sale_path %></li>
+            <li class="divider"></li>
+          <% end %>
           <% if current_user.admin == true %>
             <li class="has-dropdown">
               <a href="#" class="">Verwaltung</a>
@@ -23,6 +27,7 @@
                 <li><%= active_link_to 'Benutzer', users_path %></li>
                 <li><%= active_link_to 'Filialen', stores_path %></li>
                 <li><%= active_link_to 'Zeiterfassung', shifts_path %></li>
+                <li><%= active_link_to 'Tagesumsätze', daily_sales_path %></li>
               </ul>
             </li>
             <li class="divider"></li>

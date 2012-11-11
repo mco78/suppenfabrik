@@ -6,6 +6,8 @@ class Sale < ActiveRecord::Base
 
 	attr_accessible :date, :product, :store_id, :user_id, :value, :daily_sale_id
 
+	validates_presence_of :product, :value, :user_id
+
 	before_save :fill_hidden_fields
 
 	def fill_hidden_fields
