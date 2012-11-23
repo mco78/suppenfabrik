@@ -1,5 +1,11 @@
 <h3>Übersicht Schichten</h3>
 
+<p>
+  Download:
+  <%= link_to "CSV", shifts_path(format: "csv") %> |
+  <%= link_to "Excel", shifts_path(format: "xls") %>
+</p>
+
 <table>
 	<thead>
 		<tr>

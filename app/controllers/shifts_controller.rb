@@ -48,6 +48,11 @@ class ShiftsController < ApplicationController
 	def index
 		@title = "Übersicht Schichten"
 		@shifts = Shift.all(:order => :start).reverse
+		respond_to do |format|
+			format.html
+			format.csv { send_data Shift.to_csv }
+			format.xls
+		end
 	end
 
 	def show

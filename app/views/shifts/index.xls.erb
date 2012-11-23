@@ -1,0 +1,24 @@
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>User</th>
+    <th>Start</th>
+    <th>Stop</th>
+    <th>Filiale</th>
+    
+    
+  </tr>
+  <% @shifts.each do |shift| %>
+  <tr>
+    <td><%= shift.id %></td>
+    <td><%= User.find(shift.user_id).name %></td>
+    <td><%= shift.start.strftime("%d.%m.%y %H:%M") %></td>
+    <td><%= shift.stop.strftime("%d.%m.%y %H:%M") %></td>
+    <td><%= Store.find(shift.store_id).name %></td>
+    
+  </tr>
+  <% end %>
+</table>
+
+
+
