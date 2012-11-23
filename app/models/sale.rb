@@ -16,4 +16,13 @@ class Sale < ActiveRecord::Base
 		self.date = parent.date
 	end
 
+	def self.to_csv(options = {})
+		CSV.generate(options) do |csv|
+	    	csv << column_names
+	      	all.each do |shift|
+	    	    csv << shift.attributes.values_at(*column_names)
+	    	end
+	    end
+	end
+
 end

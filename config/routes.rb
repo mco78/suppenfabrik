@@ -23,6 +23,8 @@ Suppenfabrik::Application.routes.draw do
 
   resources :stores
 
+  match 'sales', :to => 'sales#index'
+
 
   match '/timetracking', :to => 'shifts#timetracking'
 

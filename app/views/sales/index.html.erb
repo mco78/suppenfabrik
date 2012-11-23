@@ -1,0 +1,47 @@
+<h3>Übersicht Umsätze</h3>
+
+<p>
+  Download:
+  <%= link_to "CSV", sales_path(format: "csv") %> |
+  <%= link_to "Excel", sales_path(format: "xls") %>
+</p>
+
+<p>Einzelne Umsätze werden in der Tagesumsatz-Ansicht editiert.</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Datum</th>
+			<th>Filiale</th>
+			<th>User</th>
+			<td>Produkt</td>
+			<th>Betrag</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @sales.each do |sale| %>
+			<tr>
+				<td><%= sale.id %></td>
+				<td><%= sale.date.strftime("%d.%m.%y") %></td>
+				<td> 
+					<% if Store.exists?(sale.store_id) %>
+						<%= Store.find(sale.store_id).name %>
+					<% else %>
+						--
+					<% end %>
+				</td>
+				<td><%= User.find(sale.user_id).name %></td>
+				<td><%= sale.product %></td>
+				<td><%= sale.value %></td>
+				<th><%= link_to "bearbeiten", edit_daily_sale_path(sale.daily_sale_id) %></th>
+				
+			</tr>
+		<% end %>
+	</tbody>
+	
+	
+</table>
+
+
