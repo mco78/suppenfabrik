@@ -5,7 +5,9 @@ gem "devise", ">= 2.1.2"
 gem "zurb-foundation", "3.1.1"
 gem 'active_link_to'
 gem 'nested_form'
-gem 'sqlite3'
+gem 'yaml_db'
+gem 'pg', '0.14.1'
+
 
 group :development, :test do
 	gem "rspec-rails", ">= 2.11.0"
@@ -24,5 +26,5 @@ end
 
 
 group :production do
-  #gem 'therubyracer-heroku', '0.8.1.pre3' 
+  gem 'therubyracer-heroku', '0.8.1.pre3' 
 end
