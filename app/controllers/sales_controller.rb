@@ -1,5 +1,8 @@
 class SalesController < ApplicationController
 
+	before_filter :authenticate_user!
+	before_filter :admin_rights
+	
 	def index
 		@sales = Sale.all
 		respond_to do |format|

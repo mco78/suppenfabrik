@@ -41,11 +41,15 @@ class DailySalesController < ApplicationController
   # GET /daily_sales/new.json
   def new
     @daily_sale = DailySale.new
-    6.times { @daily_sale.sales.build }
+    12.times { @daily_sale.sales.build }
 
-    @default_products = [ "Suppe 1 klein", "Suppe 1 groß", 
-    					"Suppe 2 klein", "Suppe 2 groß", 
-    					"Suppe 3 klein", "Suppe 3 groß"]
+    @default_products = [ "Suppe 1 klein", "Suppe 1 groß",
+                          "Suppe 2 klein", "Suppe 2 groß",
+                          "Suppe 3 klein", "Suppe 3 groß",
+                          "Suppe 4 klein", "Suppe 4 groß",
+                          "Suppe 5 klein", "Suppe 5 groß",
+                          "Suppe 6 klein", "Suppe 6 groß"
+                          ]
 
     respond_to do |format|
       format.html # new.html.erb
