@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 
   def end_shift(shift)
   	@shift = shift
-  	@shift.stop = Time.now
+  	@shift.stop = Time.now + 5*60 #add five minutes to shift
   	@shift.save
   end
 
