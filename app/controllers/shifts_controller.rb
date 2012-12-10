@@ -47,7 +47,7 @@ class ShiftsController < ApplicationController
 
 	def index
 		@title = "Übersicht Schichten"
-		@shifts = Kaminari.paginate_array(Shift.all(:order => :start).reverse).page(params[:page]).per(20)
+		@shifts = Kaminari.paginate_array(Shift.all(:order => :start).reverse).page(params[:page]).per(25)
 		respond_to do |format|
 			format.html
 			format.csv { send_data Shift.to_csv }

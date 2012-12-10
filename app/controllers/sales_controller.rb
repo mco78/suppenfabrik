@@ -4,7 +4,7 @@ class SalesController < ApplicationController
 	before_filter :admin_rights
 	
 	def index
-		@sales = Kaminari.paginate_array(Sale.all(:order => :date).reverse).page(params[:page]).per(20)
+		@sales = Kaminari.paginate_array(Sale.all(:order => :date).reverse).page(params[:page]).per(25)
 		respond_to do |format|
 			format.html
 			format.csv { send_data Sale.to_csv }

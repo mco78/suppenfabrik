@@ -9,7 +9,7 @@ class DailySalesController < ApplicationController
   # GET /daily_sales.json
   def index
     if current_user.admin?
-      @daily_sales = Kaminari.paginate_array(DailySale.all(:order => :date).reverse).page(params[:page]).per(20)
+      @daily_sales = Kaminari.paginate_array(DailySale.all(:order => :date).reverse).page(params[:page]).per(25)
     else
       sales = Sale.where(:user_id => current_user.id)
       @daily_sales = []
