@@ -1,5 +1,7 @@
 <h3>Übersicht Schichten</h3>
 
+<%= paginate @shifts %>
+
 <p>
   Download:
   <%= link_to "CSV", shifts_path(format: "csv") %> |
@@ -50,9 +52,9 @@
 			</tr>
 		<% end %>
 	</tbody>
-	
-	
 </table>
+
+<%= paginate @shifts %>
 
 <%= link_to 'Neue Schicht', new_shift_path, :class => "tiny round button" %>
 

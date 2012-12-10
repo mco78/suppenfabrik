@@ -1,5 +1,7 @@
 <h3>Übersicht Umsätze</h3>
 
+<%= paginate @sales %>
+
 <p>
   Download:
   <%= link_to "CSV", sales_path(format: "csv") %> |
@@ -44,4 +46,4 @@
 	
 </table>
 
-
+<%= paginate @sales %>

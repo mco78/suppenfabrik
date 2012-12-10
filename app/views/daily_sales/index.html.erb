@@ -1,5 +1,8 @@
 <h1>Übersicht Tagesumsätze</h1>
 
+<%= paginate @daily_sales %>
+
+<br>
 <% unless current_user.admin %>
   <p>Angezeigt werden nur die Tagesumsätze, welche von dir eingegeben wurden.</p>
 <% end %>
@@ -29,6 +32,8 @@
   </tr>
 <% end %>
 </table>
+
+<%= paginate @daily_sales %>
 
 <br />
 

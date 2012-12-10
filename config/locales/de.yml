@@ -240,6 +240,10 @@ de:
         password_confirmation: "Passwort Bestätigung"
         remember_me: "angemeldet bleiben"
 
-  will_paginate:
-    previous_label: "&#8592;"
-    next_label: "&#8594;"
+  views:
+    pagination:
+      first: "&lt;&lt;"
+      previous: "&lt;"
+      next: "&gt;"
+      last: "&gt;&gt;"
+      truncate: "..."

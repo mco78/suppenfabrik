@@ -7,6 +7,7 @@ gem 'active_link_to'
 gem 'nested_form'
 gem 'yaml_db'
 gem 'pg', '0.14.1'
+gem 'kaminari'
 
 
 group :development, :test do
