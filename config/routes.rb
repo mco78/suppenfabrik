@@ -16,6 +16,7 @@ Suppenfabrik::Application.routes.draw do
   	collection do
     	post 'start'
       get 'stop'
+      get 'confirm_start'
   	end
   end
 

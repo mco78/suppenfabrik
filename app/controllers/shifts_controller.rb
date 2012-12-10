@@ -8,7 +8,23 @@ class ShiftsController < ApplicationController
 	def timetracking
 		@title = 'Zeiterfassung'
 		@user = current_user
+		
+		if @user.shifts.empty?
+		else
+			if @user.shifts.all(:order => :start).last.stop.nil?
+				@current_shift = @user.shifts.all(:order => :start).last
+			else
+				@current_shift = nil
+				@last_shift = @user.shifts.all(:order => :start).last
+			end
+		end
+	end
+
+	def confirm_start
+		@title = 'Schicht starten'
+		@user = current_user
 		@stores = Store.all
+		@shift = Shift.new
 
 		if @user.shifts.empty?
 		else
@@ -19,11 +35,6 @@ class ShiftsController < ApplicationController
 				@last_shift = @user.shifts.all(:order => :start).last
 			end
 		end
-
-		if @current_shift.nil?
-			@shift = Shift.new
-		end
-		
 	end
 
 	def start

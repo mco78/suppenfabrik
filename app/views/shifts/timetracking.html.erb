@@ -6,23 +6,11 @@
 	<div class="two columns"></div>
 	<% if @current_shift.nil? %>
 		<div class="three columns" id="start">
-			<%= form_for @shift, :url => { :action => "start" } do |f|%>
-				<strong>Filiale:</strong>
-				<% if @last_shift.nil? %>
-					<%= f.select :store_id, options_from_collection_for_select(@stores, "id", "name"), :prompt => "Bitte auswählen" %>
-				<% else %>
-					<%= f.select :store_id, options_from_collection_for_select(@stores, "id", "name", :selected => @last_shift.store_id) %>
-				<% end %>
-				<br><br>
-				<%= f.hidden_field :user_id, :value => current_user.id %>
-				<%= f.hidden_field :start, :value => Time.now %>
-				<%= submit_tag 'Start', { :class => "xlarge success button"} %>
-		 	<% end %>
+			<%= link_to 'Start', confirm_start_shifts_path, { :class => "xlarge success button"} %>
 		</div>
 		<div class="two columns"></div> 
 		<div class="three columns" id="stop">
 			<a href="#" class="disabled xlarge alert button">Stop</a>
-			<p id="button-info">Nach dem Klick werden 5 Minuten zusätzlich gutgeschrieben</p>
 		</div>
   		<div class="two columns"></div>
 

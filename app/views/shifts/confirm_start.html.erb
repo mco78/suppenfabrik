@@ -1,0 +1,20 @@
+
+
+<div class="row">
+	<div class="four columns centered" id="start">
+		<h4>Schicht starten</h4>
+		<%= form_for @shift, :url => { :action => "start" } do |f|%>
+			<p><strong>In welcher Filiale arbeitest Du?</strong></p>
+			<% if @last_shift.nil? %>
+				<%= f.select :store_id, options_from_collection_for_select(@stores, "id", "name"), :prompt => "Bitte auswählen" %>
+			<% else %>
+				<%= f.select :store_id, options_from_collection_for_select(@stores, "id", "name", :selected => @last_shift.store_id) %>
+			<% end %>
+			<br><br>
+			<%= f.hidden_field :user_id, :value => current_user.id %>
+			<%= f.hidden_field :start, :value => Time.now %>
+			<%= submit_tag 'starten', { :class => "success button"} %>
+	 	<% end %>
+	</div>	
+</div>
+
