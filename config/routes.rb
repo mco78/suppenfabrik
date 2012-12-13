@@ -22,8 +22,8 @@ Suppenfabrik::Application.routes.draw do
 
   resources :users do
     member do
-      get 'edit_password'
-      put 'update_password'
+      get :change_password
+      put :update_password
     end
   end
 

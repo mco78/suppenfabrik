@@ -52,7 +52,7 @@ class ShiftsController < ApplicationController
 		@user = current_user
 		@shift = @user.shifts.all(:order => :start).last
 		@user.end_shift(@shift)
-		flash[:success] = "Schicht beendet um " + @shift.stop.strftime("%H:%M") + ". Arbeitszeit: "
+		flash[:success] = "Schicht beendet um " + @shift.stop.strftime("%H:%M") + ". Arbeitszeit: " + ((Time.at(@shift.stop - @shift.start) - 1.hour).strftime("%H:%M:%S"))
 		redirect_to timetracking_path
 	end
 

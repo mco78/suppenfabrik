@@ -15,7 +15,10 @@ class User < ActiveRecord::Base
 
   validates :password,  :presence     => true,
                         :confirmation => true,
-                        :length       => { :within => 5..40 }
+                        :length       => { :within => 5..40 }, :on => :create
+
+  validates :password,  :confirmation => true,
+                        :length       => { :within => 5..40 }, :on => :update_password
 
   
 

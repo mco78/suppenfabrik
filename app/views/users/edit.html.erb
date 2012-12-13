@@ -25,7 +25,6 @@
 
   <%= render "rights_form", :f => f %>
 
-
   <br>
   <br>
   <div class="actions">
@@ -33,6 +32,6 @@
   </div>
 <% end %>
 
-<p><%= link_to 'Passwort ändern', edit_password_user_path(@user), :class => "small round button" %></p>
+<p><%= link_to 'Passwort ändern', change_password_user_path(@user), :class => "small round button" %></p>
 
 <%= link_to 'zurück', users_path, :class => "tiny round secondary button" %>

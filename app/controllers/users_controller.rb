@@ -55,7 +55,7 @@ class UsersController < ApplicationController
 		redirect_to :back
 	end 
 
-	def edit_password
+	def change_password
 		@user = User.find(params[:id])
 	end
 
@@ -68,8 +68,7 @@ class UsersController < ApplicationController
 	      #flash[:alert] = "ACHTUNG: Aus Testgründen wurde " + @user.name + " automatisch angemeldet! Bitte ausloggen!"
 	      redirect_to users_path
 	    else
-	      #redirect_to edit_password_user_path
-	      render "edit_password"
+	      render "change_password"
 	    end
 	end
 
