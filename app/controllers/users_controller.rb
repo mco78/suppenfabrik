@@ -55,6 +55,24 @@ class UsersController < ApplicationController
 		redirect_to :back
 	end 
 
+	def edit_password
+		@user = User.find(params[:id])
+	end
+
+	def update_password
+	    @user = User.find(params[:id])
+	    if @user.update_attributes(params[:user])
+	      # Sign in the user by passing validation in case his password changed
+	      #sign_in @user, :bypass => true
+	      flash[:success] = "Passwort von " + @user.name + " geändert."
+	      #flash[:alert] = "ACHTUNG: Aus Testgründen wurde " + @user.name + " automatisch angemeldet! Bitte ausloggen!"
+	      redirect_to users_path
+	    else
+	      #redirect_to edit_password_user_path
+	      render "edit_password"
+	    end
+	end
+
 
 
 end
