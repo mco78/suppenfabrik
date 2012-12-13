@@ -16,6 +16,8 @@
 			<th>Filiale</th>
 			<th>Start</th>
 			<th>Stop</th>
+			<th>D-Float</th>
+			<th>Dauer</th>
 			<th></th>
 			<th></th>
 			<th></th>
@@ -46,6 +48,13 @@
 				<% else %>
 					<%= shift.stop.strftime("%d.%m.%y %H:%M") %>
 				<% end %>
+				<td>
+				<% if shift.stop.nil? %>
+					--
+				<% else %>
+					<%= (Time.at(shift.stop - shift.start) - 1.hour).strftime("%H:%M:%S") %>
+				<% end %>
+				</td>
 				<td><%= link_to 'ansehen', shift , :class => "tiny round secondary button"%></td>
 				<td><%= link_to 'bearbeiten', edit_shift_path(shift), :class => "tiny round secondary button" %></td>
 				<td><%= link_to 'löschen', shift, :confirm => 'Sicher?', :method => :delete, :class => "tiny round secondary button" %></td>

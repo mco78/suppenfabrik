@@ -5,6 +5,7 @@
     <th>Filiale</th>
     <th>Start</th>
     <th>Stop</th>
+    <th>Dauer</th>
   </tr>
     
   
@@ -26,7 +27,21 @@
       <% end %>
     </td>
     <td><%= shift.start.strftime("%d.%m.%y %H:%M") %></td>
-    <td><%= shift.stop.strftime("%d.%m.%y %H:%M") %></td>
+    <td>
+      <% if shift.stop.nil? %>
+        --
+      <% else %>
+        <%= shift.stop.strftime("%d.%m.%y %H:%M") %>
+      <% end %>
+    </td>
+    
+    <td>
+      <% if shift.stop.nil? %>
+        --
+      <% else %>
+        <%= (Time.at(shift.stop - shift.start) - 1.hour).strftime("%H:%M:%S") %>
+      <% end %>
+    </td>
 
     
   </tr>

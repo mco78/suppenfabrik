@@ -52,17 +52,17 @@ class ShiftsController < ApplicationController
 		@user = current_user
 		@shift = @user.shifts.all(:order => :start).last
 		@user.end_shift(@shift)
-		flash[:success] = "Schicht beendet um " + @shift.stop.strftime("%H:%M") + "."
+		flash[:success] = "Schicht beendet um " + @shift.stop.strftime("%H:%M") + ". Arbeitszeit: "
 		redirect_to timetracking_path
 	end
 
 	def index
 		@title = "Übersicht Schichten"
-		@shifts = Kaminari.paginate_array(Shift.all(:order => :start).reverse).page(params[:page]).per(25)
+		
 		respond_to do |format|
-			format.html
+			format.html  { @shifts = Kaminari.paginate_array(Shift.all(:order => :start).reverse).page(params[:page]).per(25) }
 			format.csv { send_data Shift.to_csv }
-			format.xls
+			format.xls { @shifts = Shift.all }
 		end
 	end
 
