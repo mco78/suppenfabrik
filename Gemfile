@@ -8,6 +8,7 @@ gem 'nested_form'
 gem 'yaml_db'
 gem 'pg', '0.14.1'
 gem 'kaminari'
+gem 'newrelic_rpm'
 
 
 group :development, :test do
