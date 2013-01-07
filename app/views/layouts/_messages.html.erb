@@ -2,10 +2,24 @@
 	<div class="twelve columns">
 		<% flash.each do |name, msg| %>
 			<% if msg.is_a?(String) %>
-				<div class="alert-box {name}" id="messages">
-		    		<%= msg %>
-		    		<a href="" class="close">&times;</a>
-	        	</div>
+				<% if flash[:normal] %>
+					<div class="alert-box" id="messages">
+			    		<%= msg %>
+			    		<a href="" class="close">&times;</a>
+	        		</div>
+	        	<% end %>
+	        	<% if flash[:success] %>
+					<div class="alert-box success" id="messages">
+			    		<%= msg %>
+			    		<a href="" class="close">&times;</a>
+	        		</div>
+	        	<% end %>
+	        	<% if flash[:alert] %>
+					<div class="alert-box alert" id="messages">
+			    		<%= msg %>
+			    		<a href="" class="close">&times;</a>
+	        		</div>
+	        	<% end %>	
 			<% end %>
 		<% end %>
 	</div>

@@ -52,7 +52,7 @@ class ShiftsController < ApplicationController
 		@user = current_user
 		@shift = @user.shifts.all(:order => :start).last
 		@user.end_shift(@shift)
-		flash[:success] = "Schicht beendet um " + @shift.stop.strftime("%H:%M") + ". Arbeitszeit: " + ((Time.at(@shift.stop - @shift.start) - 1.hour).strftime("%H:%M:%S"))
+		flash[:alert] = "Nicht vergessen, auszuloggen! Schicht beendet um " + @shift.stop.strftime("%H:%M") + ". Arbeitszeit: " + ((Time.at(@shift.stop - @shift.start) - 1.hour).strftime("%H:%M:%S"))
 		redirect_to timetracking_path
 	end
 
@@ -107,7 +107,7 @@ class ShiftsController < ApplicationController
 
 	def destroy
 		Shift.find(params[:id]).destroy
-		flash[:alert] = "Schicht gelöscht"
+		flash[:success] = "Schicht gelöscht"
 		redirect_to shifts_path
 	end
 
