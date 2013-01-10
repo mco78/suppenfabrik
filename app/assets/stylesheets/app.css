@@ -73,3 +73,8 @@ div.add_sale {
 	margin-bottom: 24px;
 }
 
+/*Products Form */
+
+li.product_form {
+	list-style: none;
+}

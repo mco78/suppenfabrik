@@ -9,10 +9,6 @@ Suppenfabrik::Application.routes.draw do
   devise_for :users
 
   resources :shifts do
-  	# member do
-  	# 	get 'stop'
-  	# end
-
   	collection do
     	post 'start'
       get 'stop'
@@ -29,8 +25,9 @@ Suppenfabrik::Application.routes.draw do
 
   resources :stores
 
-  match 'sales', :to => 'sales#index'
+  resources :products
 
+  match 'products', :to => 'products#index'
 
   match '/timetracking', :to => 'shifts#timetracking'
 

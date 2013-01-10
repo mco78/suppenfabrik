@@ -1,0 +1,23 @@
+<h1>Produkte</h1>
+
+<p>Hier können Produkte erstellt und bearbeitet werden. Ebenfalls kann durch die Checkbox angegeben werden, welche Produkte in der Produktumsatzabfrage aufgeführt werden. Alle Änderungen hier werden automatisch (ohne drücken eines "Speichern"-Buttons) gespeichert.</p>
+
+<% @products.each do |product| %>
+	<%= form_for product, :remote => true do |f| %>
+		<fieldset>
+			<div class="row">
+				<div class="six columns">
+					<div class="eight colums">
+						<%= f.label :name, "Produktname" %>
+						<%= f.text_field :name, :class => 'submittable' %>
+					</div>
+					
+					<div class="four columns">
+						<%= f.label :capture, "eingeben?" %>
+						<%= f.check_box :capture, :class => 'submittable' %>	
+					</div>
+				</div>		
+			</div>
+		</fieldset>
+	<% end %>
+<% end %>
