@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.11'
 gem 'jquery-rails'
 gem "devise", ">= 2.1.2"
 gem "zurb-foundation", "3.1.1"
