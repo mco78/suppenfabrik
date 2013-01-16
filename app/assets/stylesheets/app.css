@@ -75,6 +75,8 @@ div.add_sale {
 
 /*Products Form */
 
-li.product_form {
-	list-style: none;
+.headline {
+	font-weight: bold;
+	color: #791225;
+	margin-bottom: 2em;
 }

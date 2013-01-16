@@ -1,3 +1,5 @@
+ # -*- coding: utf-8 -*-
+
 class ProductsController < ApplicationController
 
 	before_filter :authenticate_user!
@@ -29,6 +31,12 @@ class ProductsController < ApplicationController
 			        format.json { render json: @product.errors, status: :unprocessable_entity }
 		      end
 	    end
+	end
+
+	def destroy
+		Product.find(params[:id]).destroy
+		flash[:sucess] = "Produkt gelöscht"
+		redirect_to :back
 	end
 
 end
