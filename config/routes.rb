@@ -29,6 +29,9 @@ Suppenfabrik::Application.routes.draw do
 
   match 'products', :to => 'products#index'
 
+  #löschen?
+  match 'sales', :to => 'sales#index'
+
   match '/timetracking', :to => 'shifts#timetracking'
 
 end
