@@ -6,5 +6,6 @@ class Store < ActiveRecord::Base
 
   has_many :shifts
   has_many :sales
+  has_many :checkouts
   
 end

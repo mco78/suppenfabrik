@@ -11,4 +11,9 @@ class SalesController < ApplicationController
 			format.xls
 		end
 	end
+
+	def update
+		@sale = Sale.find params[:id]
+		@sale.update_attributes params[:sale]
+	end
 end

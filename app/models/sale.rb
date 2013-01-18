@@ -1,20 +1,13 @@
 class Sale < ActiveRecord::Base
 	
-	belongs_to :daily_sale
+	belongs_to :checkout
+	belongs_to :product
 	belongs_to :store
 	belongs_to :user
 
-	attr_accessible :date, :product, :store_id, :user_id, :value, :daily_sale_id
+	attr_accessible :date, :product_id, :store_id, :user_id, :value, :checkout_id
 
 	validates_presence_of :product, :value, :user_id
-
-	before_save :fill_hidden_fields
-
-	def fill_hidden_fields
-		parent = DailySale.find(self.daily_sale_id)
-		self.store_id = parent.store_id
-		self.date = parent.date
-	end
 
 	def self.to_csv(options = {})
 		CSV.generate(options) do |csv|

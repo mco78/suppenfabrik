@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   
   has_many :shifts
   has_many :sales
+  has_many :checkouts
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me,
@@ -33,5 +34,14 @@ class User < ActiveRecord::Base
   	@shift.save
   end
 
+  def get_current_store_id
+    current_shift = self.shifts.all(:order => :start).last
+    if current_shift.stop.nil?
+      return current_shift.store_id
+    else
+      return nil
+    end
+  end
 
 end
+
