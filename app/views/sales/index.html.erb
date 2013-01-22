@@ -1,49 +1,72 @@
-<h3>Übersicht Umsätze</h3>
+<div class="row">
+	<div class="twelve columns">
+		<h2>Endabrechnung</h2>
+		<h5>Datum: <strong><%= @checkout.date %></strong><br>
+			<% unless @store.nil? %>
+				Filiale: <strong><%= @store.name %></strong>
+			<% end %>
+		</h5>
+		<div>
+			<p><em>Dev-Info:</em><br>
+			ID: <%= @checkout.id %><br>
+			Date: <%= @checkout.date %> <br>
+			<% unless @store.nil? %>
+				Store: <%= @store.name %><br>
+			<% end %>
+			User: <%= @user.name %> </p>
+		</div>
+	</div>
+</div>
 
-<%= paginate @sales %>
-
-<p>
-  Download:
-  <%= link_to "CSV", sales_path(format: "csv") %> |
-  <%= link_to "Excel", sales_path(format: "xls") %>
-</p>
-
-<p>Einzelne Umsätze werden in der Tagesumsatz-Ansicht editiert.</p>
-
-<table>
-	<thead>
-		<tr>
-			<th>ID</th>
-			<th>Datum</th>
-			<th>Filiale</th>
-			<th>User</th>
-			<td>Produkt</td>
-			<th>Betrag</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @sales.each do |sale| %>
-			<tr>
-				<td><%= sale.id %></td>
-				<td><%= sale.date.strftime("%d.%m.%y") %></td>
-				<td> 
-					<% if Store.exists?(sale.store_id) %>
-						<%= Store.find(sale.store_id).name %>
-					<% else %>
-						--
+<div class="row">
+	<div class="twelve columns">
+		<h3>Produktumsätze erfassen (Schritt 1 von 4)</h3>
+		<% @products.each do |product| %>
+			<% sale = @sales.find_by_product_id(product.id) %>
+			<div class="fields">
+				<% if sale.nil? %>
+					<%= form_for [@checkout, @sale], :remote => true do |f| %>
+						<%= f.hidden_field :checkout_id, :value => @checkout.id %>
+						<%= f.hidden_field :user_id, :value => @user.id %>
+			      		<%= f.hidden_field :store_id, :value => @store.id %>
+			      		<%= f.hidden_field :date, :value => @checkout.date %>
+			      		<%= f.hidden_field :product_id, :value => product.id %>
+			      		<div class="row">
+							<div class="two mobile-one columns">
+								<label class="right inline">
+									<%= product.name %>: 
+								</label>
+							</div>
+							<div class="two columns">
+								<%= f.number_field :value, :class => 'submittable' %>
+							</div>
+							<div class="one colums"></div>
+						</div>
 					<% end %>
-				</td>
-				<td><%= User.find(sale.user_id).name %></td>
-				<td><%= sale.product %></td>
-				<td><%= sale.value %></td>
-				<th><%= link_to "bearbeiten", edit_daily_sale_path(sale.daily_sale_id) %></th>
-				
-			</tr>
+				<% else %>
+					<%= form_for [@checkout, sale], :remote => true do |f| %>
+						<%= f.hidden_field :checkout_id, :value => @checkout.id %>
+						<%= f.hidden_field :user_id, :value => @user.id %>
+			      		<%= f.hidden_field :store_id, :value => @store.id %>
+			      		<%= f.hidden_field :date, :value => @checkout.date %>
+			      		<%= f.hidden_field :product_id, :value => product.id %>
+			      		
+						<div class="row">
+							<div class="two mobile-one columns">
+								<label class="right inline">
+									<%= product.name %>: 
+								</label>
+							</div>
+							<div class="two columns">
+								<%= f.number_field :value, :class => 'submittable' %>
+							</div>
+							<div class="one colums"></div>
+						</div>
+					<% end %>
+				<% end %>
+			</div>
 		<% end %>
-	</tbody>
-	
-	
-</table>
+	</div>
+</div>
 
-<%= paginate @sales %>
+

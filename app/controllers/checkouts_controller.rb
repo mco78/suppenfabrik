@@ -2,7 +2,7 @@ class CheckoutsController < ApplicationController
 
 	before_filter :authenticate_user!
 
-	def step1
+	def new
 		@checkout = Checkout.new
 		@checkout.set_defaults(current_user)
 		if @checkout.store_id.nil?
@@ -13,6 +13,13 @@ class CheckoutsController < ApplicationController
 			@user = current_user
 			@checkout.save
 		end
+		redirect_to checkout_sales_path(@checkout)
+	end
+
+	def step1
+		@checkout = Checkout.find(params[:id])
+		@store = Store.find(@checkout.store_id)
+		@user = current_user
 		@products = Product.where(:capture => true)
 		@products.count.times {@checkout.sales.build }
 	end

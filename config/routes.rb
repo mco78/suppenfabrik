@@ -27,18 +27,17 @@ Suppenfabrik::Application.routes.draw do
 
   resources :products
 
-  match 'products', :to => 'products#index'
+  #resources :sales
+
+  #match 'products', :to => 'products#index'
 
   #löschen?
-  match 'sales', :to => 'sales#index'
+  #match 'sales', :to => 'sales#index'
 
   match '/timetracking', :to => 'shifts#timetracking'
 
   resources :checkouts do
-    collection do
-      get :step1
-      get :step2
-    end
+      resources :sales
   end
 
 end
