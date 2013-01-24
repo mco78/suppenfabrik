@@ -17,7 +17,7 @@
             <li class="divider"></li>
           <% end %>
           <% if current_user.daily_sales == true %>
-            <li> <%= active_link_to 'Tagesumsätze', new_daily_sale_path %></li>
+            <li> <%= active_link_to 'Endabrechnung', new_checkout_path  %></li>
             <li class="divider"></li>
           <% end %>
           <% if current_user.admin == true %>

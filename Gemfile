@@ -9,7 +9,6 @@ gem 'yaml_db'
 gem 'pg', '0.14.1'
 gem 'kaminari'
 gem 'newrelic_rpm'
-gem 'I18nFloat'
 
 
 group :development, :test do

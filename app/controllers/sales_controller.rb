@@ -12,36 +12,29 @@ class SalesController < ApplicationController
 
 		@sales = @checkout.sales
 		@sale = Sale.new
-		# if @checkout.sales.empty?
-		# 	@new = true
-		# 	@products.count.times {@checkout.sales.build}
-		# 	@sales = @checkout.sales
-		# else
-		# 	@new = false
-		# 	@sales = @checkout.sales
-		# end
 	end
 
 	def update
+		@checkout = Checkout.find(params[:checkout_id])
 		@sale = Sale.find params[:id]
 		@sale.update_attributes params[:sale]
-	end
+		redirect_to checkout_z_bons_path(@checkout)
+	end	
 
 	def new
 		@sale = Sale.new
 	end
 
 	def create
+		@checkout = Checkout.find(params[:checkout_id])
     	@sale = Sale.new(params[:sale])
 
-	    respond_to do |format|
-		      if @sale.save
-			        format.html { redirect_to sales_path, notice: 'Umsatz erfolgreich erstellt.' }
-			        format.json { render json: @sale, status: :created, location: @sale }
-		      else
-			        format.html { render action: "new" }
-			        format.json { render json: @sale.errors, status: :unprocessable_entity }
-		      end
+	    if @sale.save
+	        flash[:success] = "Umsatz gespeichert."
+			redirect_to checkout_sales_path(@checkout)
+		else	
+			flash[:error] = "Fehler!"
+			redirect_to :back
 	    end
 	end
 

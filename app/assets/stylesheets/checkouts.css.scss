@@ -1,3 +1,106 @@
 // Place all the styles related to the checkouts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/* -----------------------------------------
+   Endabrechnung
+----------------------------------------- */
+
+/*css-arrow*/
+
+.arrow_box {
+	background-color: #F2F2F2;
+	height: 62px;
+	width: 90%;
+	position: relative;
+	padding: 5px;
+	margin: 20px 0 20px 0;
+	padding: 8px 20px 9px;
+	border-color: #CCC;	
+	color: black;
+}
+
+.arrow_box:hover {
+	background-color: #791225;
+	color: white;
+}
+
+.arrow_box:visited {
+	color: black;
+}
+
+.arrow_box:visited:hover {
+	color: white;
+}
+
+.arrow_box a {
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	margin: 0;
+	color: black;
+}
+
+.arrow_box a:hover {
+	color: white;
+}
+
+.active {
+	background-color: #791225;
+	color: white;
+}
+
+.active:visited {
+	color: white;
+}
+
+.arrow_box:after {
+	content: ' ';
+	height: 0;
+	position: absolute;
+	width: 0;
+
+	border: 20px solid transparent;
+	border-left-color: #CCC;
+	left: 100%;
+	top: 50%;
+	margin-top: -20px;
+}
+
+.end_arrow_box {
+	background-color: #F2F2F2;
+	height: 62px;
+	width: 90%;
+	position: relative;
+	padding: 5px;
+	margin: 20px 0 20px 0;
+	padding: 8px 20px 9px;
+	border-color: #CCC;	
+	color: black;
+}
+.end_arrow_box:hover {
+	background-color: #791225;
+	color: white;
+}
+
+.end_arrow_box a {
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	margin: 0;
+	color: black;
+}
+
+.end_arrow_box a:hover {
+	color: white;
+}
+
+.active {
+	background-color: #791225;
+	color: white;
+}
+
+#finish {
+	float: right;
+}

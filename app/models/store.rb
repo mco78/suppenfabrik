@@ -7,5 +7,6 @@ class Store < ActiveRecord::Base
   has_many :shifts
   has_many :sales
   has_many :checkouts
+  has_many :z_bons
   
 end

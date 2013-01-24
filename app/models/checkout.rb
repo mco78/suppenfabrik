@@ -1,15 +1,14 @@
 class Checkout < ActiveRecord::Base
-  attr_accessible :date, :store_id, :user_id,
-                  :sales_attributes
+  attr_accessible :date, :store_id, :user_id
 
   belongs_to :user
   belongs_to :store
   has_many :sales
+  has_many :z_bons
 
-  accepts_nested_attributes_for :sales, :reject_if => lambda { |a| a[:value].blank? }, :allow_destroy => true
 
-  validates_presence_of :date
-  validates_presence_of :user_id
+  validates_presence_of :date, :user_id, :store_id
+  
 
   def set_defaults(current_user)
   	self.user_id = current_user.id

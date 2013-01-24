@@ -14,14 +14,14 @@
 		<% @products.each do |product| %>
 			<%= form_for product, :remote => true do |f| %>
 				<div class="row">
-					<div class="eight columns">
+					<div class="six columns">
 						<%= f.text_field :name, :class => 'submittable' %>
 					</div>
-					<div class="two columns">
+					<div class="four columns">
 						<span>abfragen?</span> <%= f.check_box :capture, :class => 'submittable' %>
 					</div>
 					<div class="two columns">
-						<%= link_to 'löschen', product, :method => :delete, :confirm => "sicher?" %>
+						<%= link_to 'löschen', product, :method => :delete, :confirm => "sicher?", :class => 'delete' %>
 					</div>
 				</div>
 			<% end %>

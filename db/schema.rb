@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130118211845) do
+ActiveRecord::Schema.define(:version => 20130124200352) do
 
   create_table "checkouts", :force => true do |t|
     t.date     "date"
@@ -82,5 +82,16 @@ ActiveRecord::Schema.define(:version => 20130118211845) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "z_bons", :force => true do |t|
+    t.decimal  "sale19"
+    t.decimal  "sale7"
+    t.date     "date"
+    t.integer  "user_id"
+    t.integer  "store_id"
+    t.integer  "checkout_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
 end
