@@ -39,6 +39,7 @@ Suppenfabrik::Application.routes.draw do
   resources :checkouts do
       resources :sales
       resources :z_bons
+      resources :receipts
   end
 
 end

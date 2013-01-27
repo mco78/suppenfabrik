@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130124200352) do
+ActiveRecord::Schema.define(:version => 20130127153626) do
 
   create_table "checkouts", :force => true do |t|
     t.date     "date"
@@ -33,6 +33,19 @@ ActiveRecord::Schema.define(:version => 20130124200352) do
     t.boolean  "capture",    :default => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "receipts", :force => true do |t|
+    t.text     "text"
+    t.decimal  "pre_tax"
+    t.decimal  "tax"
+    t.decimal  "after_tax"
+    t.integer  "user_id"
+    t.integer  "store_id"
+    t.integer  "checkout_id"
+    t.date     "date"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "sales", :force => true do |t|

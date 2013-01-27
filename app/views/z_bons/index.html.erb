@@ -43,7 +43,7 @@
     		<%= link_to 'Z-Bon', checkout_z_bons_path(@checkout), :class => 'button arrow_box active' %>
     	</div>
     	<div class="two mobile-one columns">
-    		<%= link_to 'Belege', '#', :class => 'button arrow_box' %>
+    		<%= link_to 'Belege', checkout_receipts_path(@checkout), :class => 'button arrow_box' %>
     	</div>
     	<div class="two mobile-one columns">
     		<%= link_to 'Kassen-<br>bestand'.html_safe, '#', :class => 'button end_arrow_box' %>

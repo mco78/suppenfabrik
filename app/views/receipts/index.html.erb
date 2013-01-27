@@ -1,0 +1,68 @@
+<%= render :partial => '/checkouts/checkout_title' %>
+
+<div class="row">
+  <h3>Belege (Schritt 3 von 4)</h3>
+
+  <p>Wurden Ausgaben getätigt und sind Belege vorhanden?</p>
+</div>
+
+<div class="receipts">
+	<div class="row">
+		<div class="eight columns">
+	
+			<% @receipts.each do |receipt| %>
+				<%= form_for [@checkout, receipt], :remote => true do |f| %>
+					<%= f.hidden_field :checkout_id, :value => @checkout.id %>
+					<%= f.hidden_field :user_id, :value => @user.id %>
+				   	<%= f.hidden_field :store_id, :value => @store.id %>
+				   	<%= f.hidden_field :date, :value => @checkout.date %>
+				   	
+					<fieldset>
+				    	<div class="six columns">
+				    		<label>Text</label>
+				    		<%= f.text_field :text, :class => 'submittable' %>
+				    	</div>
+				    	<div class="two columns">
+				    		<label>Netto</label>
+				    		<%= f.number_field :pre_tax, :class => 'submittable' %>
+				    	</div>
+				    	<div class="two columns">
+				    		<label>MWSt.</label>
+				    		<%= f.number_field :tax, :class => 'submittable' %>
+				    	</div>
+				    	<div class="two columns">
+				    		<label>Brutto</label>
+				    		<%= f.number_field :after_tax, :class => 'submittable' %>
+				    	</div>
+				    </fieldset>
+				<% end %>
+			<% end %>
+		</div>
+	</div>    
+</div>
+
+
+<!-- test -->
+<div>
+	<%= link_to_function "Achtung!", "alert('Hello world!')", :class => "small round button" %>	
+</div>
+
+
+<div class="row">
+  	<div class="twelve colums">
+    	<div class="two mobile-one columns">
+    		<%= link_to 'Produkt-<br>umsätze'.html_safe, checkout_sales_path(@checkout), :class => 'button arrow_box'%>
+    	</div>
+    	<div class="two mobile-one columns">
+    		<%= link_to 'Z-Bon', checkout_z_bons_path(@checkout), :class => 'button arrow_box' %>
+    	</div>
+    	<div class="two mobile-one columns">
+    		<%= link_to 'Belege', checkout_receipts_path(@checkout), :class => 'button active arrow_box' %>
+    	</div>
+    	<div class="two mobile-one columns">
+    		<%= link_to 'Kassen-<br>bestand'.html_safe, '#', :class => 'button end_arrow_box' %>
+    	</div>
+    	<div class="two columns">
+    	</div>
+  	</div>
+</div>
