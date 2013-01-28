@@ -8,6 +8,12 @@ class ReceiptsController < ApplicationController
 		@receipts = @checkout.receipts
 	end
 
+	def add_new
+		@receipt = Receipt.new
+		init(@receipt)
+		redirect_to checkout_receipts_path(@checkout)
+	end
+
 	def update
 		@checkout = Checkout.find(params[:checkout_id])
 		@receipt = Receipt.find params[:id]
@@ -37,5 +43,16 @@ class ReceiptsController < ApplicationController
 		flash[:sucess] = "Beleg gelöscht"
 		redirect_to :back
 	end
+
+	private
+
+	def init(receipt)
+		@checkout = Checkout.find(params[:checkout_id])
+  		receipt.date = @checkout.date
+  		receipt.checkout_id = @checkout.id
+  		receipt.store_id = @checkout.store_id
+  		receipt.user_id = @checkout.user_id
+  		receipt.save
+  	end
 
 end

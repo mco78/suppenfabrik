@@ -6,6 +6,10 @@ class Receipt < ActiveRecord::Base
   	belongs_to :user
   	belongs_to :store
 
-  	validates_presence_of 	:after_tax, :checkout_id, :date, :pre_tax, 
-  							:store_id, :tax, :user_id
+  	validates_presence_of 	:date, :checkout_id, :store_id, :user_id
+
+  	
+
+
+
 end
