@@ -44,6 +44,8 @@ Suppenfabrik::Application.routes.draw do
           get :add_new
         end
       end
+      resources :cash_balances
   end
 
+  mount Foundation::Icons::Rails::Engine => '/fi'
 end

@@ -1,0 +1,218 @@
+<%= render :partial => '/checkouts/checkout_title' %>
+
+<div class="row">
+  	<h3>Kassenbestand (Schritt 4 von 4)</h3>
+
+  	<p>Bitte Kassenbestand und anschließende Barentnahme aus der Kasse eingeben.</br>
+  	Entweder Betrag direkt ins Form-Feld eingeben, oder <span class="glyph general">k</span> klicken und Scheine und Münzen einzeln eingeben. </p>
+</div>
+<br><br>
+
+<!-- Kassenbestand -->
+<%= form_for [@checkout, @cash_balance], :remote => true, :html => {:id => "cash_balance_form"} do |f| %>
+	<%= f.hidden_field :checkout_id, :value => @checkout.id %>
+  	<%= f.hidden_field :user_id, :value => @user.id %>
+	<%= f.hidden_field :store_id, :value => @store.id %>
+	<%= f.hidden_field :date, :value => @checkout.date %>
+	<div class="row">
+    	<div class="two mobile-one columns">
+      		<label class="right inline">Kassenbestand:</label>
+    	</div>
+    	<div class="four mobile-two columns">
+      		<%= f.number_field :cash, :id => "cash_total", :class => "submittable" %>
+      	</div>
+      	<div class="one columns" ><span class="glyph general has-tip tip-bottom" id="fire_cash_modal" data-width="90" title="Hier klicken um Scheine & Münzen einzugeben">k</span></div>
+    	<div class="one colums"></div>
+  	</div>
+  	<div class="row">
+    	<div class="two mobile-one columns">
+      		<label class="right inline">Barentnahme:</label>
+    	</div>
+    	<div class="four mobile-two columns">
+      		<%= f.number_field :extraction, :id => "remove_total", :class => "submittable" %>
+      	</div>
+      	<div class="one columns" ><span class="glyph general has-tip tip-bottom" id="fire_remove_modal" data-width="90" title="Hier klicken um Scheine & Münzen einzugeben">k</span></div>
+    	<div class="one colums"></div>
+  	</div>
+<% end %>
+
+<div class="row">
+	<div class="twelve colums">
+		<div class="two mobile-one columns">
+			<%= link_to 'Produkt-<br>umsätze'.html_safe, checkout_sales_path(@checkout), :class => 'button arrow_box'%>
+		</div>
+		<div class="two mobile-one columns">
+			<%= link_to 'Z-Bon', checkout_z_bons_path(@checkout), :class => 'button arrow_box' %>
+		</div>
+		<div class="two mobile-one columns">
+			<%= link_to 'Belege', checkout_receipts_path(@checkout), :class => 'button arrow_box' %>
+		</div>
+		<div class="two mobile-one columns">
+			<%= link_to 'Kassen-<br>bestand'.html_safe, checkout_cash_balances_path(@checkout), :class => 'button active end_arrow_box' %>
+		</div>
+		<div class="two columns">
+		</div>
+	</div>
+</div>
+
+<div id="cash_modal" class="reveal-modal large">
+	<fieldset>
+		<legend>Anzahl Scheine/Münzen in der Kasse</legend>
+		<div class="row">
+	  		<div class="two columns">
+				<label for="500">500€</label>
+				<input class="cash" id="500" type="number">
+			</div>
+	  		<div class="two columns">
+				<label for="200">200€</label>
+				<input class="cash" id="200" type="number">
+	  		</div>
+	  		<div class="two columns">
+				<label for="100">100€</label>
+				<input class="cash" id="100" type="number">
+	  		</div>
+	  		<div class="two columns">
+				<label for="50">50€</label>
+				<input class="cash" id="50" type="number">
+	  		</div>
+			<div class="two columns">
+				<label for="20">20€</label>
+				<input class="cash" id="20" type="number">
+			</div>
+		  	<div class="two columns">
+				<label for="10">10€</label>
+				<input class="cash" id="10" type="number">
+		  	</div>
+		</div>		
+		<div class="row">
+			<div class="two columns">
+				<label for="5">5€</label>
+				<input class="cash"id="5" type="number">
+			</div>
+			<div class="two columns">
+				<label for="2">2€</label>
+				<input class="cash"id="2" type="number">
+			</div>
+		  	<div class="two columns">
+				<label for="1">1€</label>
+				<input class="cash" id="1" type="number">
+		 	</div>
+		  	<div class="two columns">
+				<label for="0,50">0,50€</label>
+				<input class="cash" id="0.50" type="number">
+		  	</div>
+		  	<div class="two columns">
+				<label for="0,20">0,20€</label>
+				<input class="cash" id="0.20" type="number">
+		  	</div>
+		  	<div class="two columns">
+				<label for="0,10">0,10€</label>
+				<input class="cash" id="0.10" type="number">
+		  	</div>
+		</div>
+		<div class="row">
+	  		<div class="two columns">
+				<label for="0,05">0,05€</label>
+				<input class="cash" id="0.05" type="number">
+	 		 </div>
+			<div class="two columns">
+				<label for="0,02">0,02€</label>
+				<input class="cash" id="0.02" type="number">
+		  	</div>
+	  		<div class="two columns">
+				<label for="0,01">0,01€</label>
+				<input class="cash" id="0.01" type="number">
+	  		</div>
+	  		<div class="one columns">
+	  		</div>
+		</div>
+		<div class="row">
+	  		<div class="four columns">
+				<label for="cash_total"><strong>Kassenbestand gesamt:</strong></label>
+				<input id="cash_total" type="number">
+	  		</div>
+		</div>  
+  	</fieldset>
+  	<a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="remove_modal" class="reveal-modal large">
+	<fieldset>
+		<legend>Barentnahme:</legend>
+		<div class="row">
+			<div class="two columns">
+				<label for="500">500€</label>
+				<input class="remove" id="500" type="number">
+		  	</div>
+			<div class="two columns">
+				<label for="200">200€</label>
+				<input class="remove" id="200" type="number">
+			</div>
+			<div class="two columns">
+				<label for="100">100€</label>
+				<input class="remove" id="100" type="number">
+			</div>
+	 		<div class="two columns">
+				<label for="50">50€</label>
+				<input class="remove" id="50" type="number">
+	 		</div>
+		  	<div class="two columns">
+				<label for="20">20€</label>
+				<input class="remove" id="20" type="number">
+		  	</div>
+		  	<div class="two columns">
+				<label for="10">10€</label>
+				<input class="remove" id="10" type="number">
+		  	</div>
+		</div>
+		<div class="row">
+		  	<div class="two columns">
+				<label for="5">5€</label>
+				<input class="remove"id="5" type="number">
+		  	</div>
+		  	<div class="two columns">
+				<label for="2">2€</label>
+				<input class="remove"id="2" type="number">
+		  	</div>
+		  	<div class="two columns">
+				<label for="1">1€</label>
+				<input class="remove" id="1" type="number">
+		  	</div>
+		  	<div class="two columns">
+				<label for="0,50">0,50€</label>
+				<input class="remove" id="0.50" type="number">
+		  	</div>
+		  	<div class="two columns">
+				<label for="0,20">0,20€</label>
+				<input class="remove" id="0.20" type="number">
+		  	</div>
+		  	<div class="two columns">
+				<label for="0,10">0,10€</label>
+				<input class="remove" id="0.10" type="number">
+		  	</div>
+		</div>
+		<div class="row">
+		  	<div class="two columns">
+				<label for="0,05">0,05€</label>
+				<input class="remove" id="0.05" type="number">
+		  	</div>
+		  	<div class="two columns">
+				<label for="0,02">0,02€</label>
+				<input class="remove" id="0.02" type="number">
+		  	</div>
+		  	<div class="two columns">
+				<label for="0,01">0,01€</label>
+				<input class="remove" id="0.01" type="number">
+		  	</div>
+		  <div class="one columns">
+		  </div>
+		</div>
+		<div class="row">
+		  	<div class="four columns">
+				<label for="remove_total"><strong>Barentnahme gesamt:</strong></label>
+				<input id="remove_total" type="number">
+		  	</div>
+		</div>  
+	</fieldset>
+	<a class="close-reveal-modal">&#215;</a>
+</div> 

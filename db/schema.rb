@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130127153626) do
+ActiveRecord::Schema.define(:version => 20130128201429) do
+
+  create_table "cash_balances", :force => true do |t|
+    t.decimal  "cash"
+    t.decimal  "extraction"
+    t.date     "date"
+    t.integer  "checkout_id"
+    t.integer  "store_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "checkouts", :force => true do |t|
     t.date     "date"

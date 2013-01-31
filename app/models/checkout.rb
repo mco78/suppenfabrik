@@ -6,6 +6,7 @@ class Checkout < ActiveRecord::Base
   has_many :sales
   has_many :z_bons
   has_many :receipts
+  has_many :cash_balances
 
 
   validates_presence_of :date, :user_id, :store_id

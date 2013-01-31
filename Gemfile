@@ -9,6 +9,7 @@ gem 'yaml_db'
 gem 'pg', '0.14.1'
 gem 'kaminari'
 gem 'newrelic_rpm'
+gem 'foundation-icons-rails'
 
 
 group :development, :test do

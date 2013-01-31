@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :checkouts
   has_many :z_bons
   has_many :receipts
+  has_many :cash_balances
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me,

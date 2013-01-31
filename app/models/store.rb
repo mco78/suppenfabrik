@@ -9,5 +9,6 @@ class Store < ActiveRecord::Base
   has_many :checkouts
   has_many :z_bons
   has_many :receipts
+  has_many :cash_balances
   
 end
