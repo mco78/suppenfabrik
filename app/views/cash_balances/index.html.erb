@@ -8,7 +8,6 @@
 </div>
 <br><br>
 
-<!-- Kassenbestand -->
 <%= form_for [@checkout, @cash_balance], :remote => true, :html => {:id => "cash_balance_form"} do |f| %>
 	<%= f.hidden_field :checkout_id, :value => @checkout.id %>
   	<%= f.hidden_field :user_id, :value => @user.id %>
@@ -29,12 +28,17 @@
       		<label class="right inline">Barentnahme:</label>
     	</div>
     	<div class="four mobile-two columns">
-      		<%= f.number_field :extraction, :id => "remove_total", :class => "submittable" %>
+      		<%= f.number_field :extraction, :step => 2, :id => "remove_total", :class => "submittable" %>
       	</div>
       	<div class="one columns" ><span class="glyph general has-tip tip-bottom" id="fire_remove_modal" data-width="90" title="Hier klicken um Scheine & Münzen einzugeben">k</span></div>
     	<div class="one colums"></div>
   	</div>
 <% end %>
+<div class="row">
+	<div id="finish" class="eight columns">
+		<a id="fire_finish_modal" class="round large button">Endabrechung abschließen</a>
+	</div>
+</div>
 
 <div class="row">
 	<div class="twelve colums">
@@ -216,3 +220,55 @@
 	</fieldset>
 	<a class="close-reveal-modal">&#215;</a>
 </div> 
+
+<div id="finish_modal" class="reveal-modal large">
+	<h3>Endabrechnung beenden</h3>
+	<p>Sind alle Angaben korrekt? Dann auf "abschließen" klicken. Zum korrigieren der Endabrechnung auf "zurück" klicken.</p>
+	
+	<fieldset>
+		<h5>Produktumsätze</h5>
+		<% unless @sales.nil? %>
+			<ul class="square">
+			<% @sales.each do |sale| %>
+				<li><%= Product.find(sale.product_id).name %>: <%= number_to_currency(sale.value) %></li>
+			<% end %>
+			</ul>
+		<% end %>
+		
+		<h5>Z-Bon</h5>
+		<% unless @z_bon.nil? %>
+			<ul class="square">
+				<li>Tagesumsatz 19% MWSt: <%= number_to_currency(@z_bon.sale19) %></li>
+				<li>Tagesumsatz 7% MWSt: <%= number_to_currency(@z_bon.sale7) %></li>	
+			</ul>
+		<% end %>
+		
+		<h5>Belege</h5>
+		<% unless @receipts.nil? %>
+			<% @receipts.each do |receipt| %>
+				<%= receipt.text %>
+				<ul class="square">
+					<li>Brutto: <%= receipt.pre_tax %></li>
+					<li>MWSt: <%= receipt.tax %></li>
+					<li>Netto: <%= receipt.after_tax %></li>
+				</ul>
+			<% end %>
+		<% end %>
+			
+		<h5>Kassenbestand:</h5>
+		<% unless @cash_balance.nil? %>
+			<ul class="square">
+				<li>Kassenbestand: <%= number_to_currency(@cash_balance.cash) %></li>
+				<li>Barentnahme: <%= number_to_currency(@cash_balance.extraction) %></li>
+			</ul>
+		<% end %>
+		<br>
+	</fieldset>
+	
+	<%= link_to "zurück", checkout_cash_balances_path(@checkout), :class => 'round secondary button' %>
+	<%= link_to "abschließen", root_path, :class => 'round success button' %>
+	
+	
+	
+	<a class="close-reveal-modal">&#215;</a>
+</div>

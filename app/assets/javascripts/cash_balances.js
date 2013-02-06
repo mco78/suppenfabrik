@@ -38,4 +38,8 @@ $(document).ready(function() {
   $("#fire_remove_modal").click(function() {
     $("#remove_modal").reveal();
   });
+  $("#fire_finish_modal").click(function() {
+    $("#finish_modal").reveal();
+  });
+
 });

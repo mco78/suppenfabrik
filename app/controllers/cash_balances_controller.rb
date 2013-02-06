@@ -10,6 +10,10 @@ class CashBalancesController < ApplicationController
 		else
 			@cash_balance = @checkout.cash_balances.last
 		end
+		
+		@sales = @checkout.sales
+		@z_bon = @checkout.z_bons.last
+		@receipts = @checkout.receipts
 	end
 
 	def update

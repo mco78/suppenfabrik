@@ -6,7 +6,6 @@ class ZBon < ActiveRecord::Base
   belongs_to :user
   belongs_to :store
 
-  validates_presence_of :checkout_id, :date, :sale19, :sale7, 
-  						:store_id, :user_id
+  validates_presence_of :checkout_id, :date, :store_id, :user_id
   
 end
