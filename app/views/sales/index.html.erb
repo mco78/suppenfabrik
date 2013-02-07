@@ -7,7 +7,9 @@
 			<% sale = @sales.find_by_product_id(product.id) %>
 			<div class="fields">
 				<% if sale.nil? %>
-					<%= form_for [@checkout, @sale], :remote => true do |f| %>
+					<% sale = Sale.new %>
+					<% @sales << sale %>
+					<%= form_for [@checkout, sale], :remote => true do |f| %>
 						<%= f.hidden_field :checkout_id, :value => @checkout.id %>
 						<%= f.hidden_field :user_id, :value => @user.id %>
 			      		<%= f.hidden_field :store_id, :value => @store.id %>

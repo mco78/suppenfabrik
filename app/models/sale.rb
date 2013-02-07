@@ -7,7 +7,7 @@ class Sale < ActiveRecord::Base
 
 	attr_accessible :date, :product_id, :store_id, :user_id, :value, :checkout_id
 
-	validates_presence_of :product_id, :value, :user_id, :date
+	validates_presence_of :product_id, :user_id, :date
 
 	def self.to_csv(options = {})
 		CSV.generate(options) do |csv|

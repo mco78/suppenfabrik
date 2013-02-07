@@ -14,6 +14,14 @@ class SalesController < ApplicationController
 		@sale = Sale.new
 	end
 
+	def admin_index
+		respond_to do |format|
+			format.html  { @sales = Kaminari.paginate_array(Sale.all(:order => :date).reverse).page(params[:page]).per(25) }
+			format.csv { send_data Sale.to_csv }
+			format.xls { @sales = Sale.all }
+		end
+	end
+
 	def update
 		@checkout = Checkout.find(params[:checkout_id])
 		@sale = Sale.find params[:id]
