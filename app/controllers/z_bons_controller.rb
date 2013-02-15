@@ -13,6 +13,14 @@ class ZBonsController < ApplicationController
 		end
 	end
 
+	def admin_index
+		respond_to do |format|
+			format.html  { @z_bons = Kaminari.paginate_array(ZBon.all(:order => :date).reverse).page(params[:page]).per(25) }
+			format.csv { send_data ZBon.to_csv }
+			format.xls { @z_bons = ZBon.all }
+		end
+	end
+
 	def update
 		@checkout = Checkout.find(params[:checkout_id])
 		@z_bon = ZBon.find params[:id]

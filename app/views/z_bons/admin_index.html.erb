@@ -1,0 +1,42 @@
+<h3>Übersicht Tagesumsätze (Z-Bons)</h3>
+
+<%= paginate @z_bons %>
+
+<p>
+  Download:
+  <%= link_to "CSV", z_bons_path(format: "csv") %> |
+  <%= link_to "Excel", z_bons_path(format: "xls") %>
+</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Datum</th>
+			<th>Filiale</th>
+			<th>Mitarbeiter</th>
+			<th>Umsatz 19%</th>
+			<th>Umsatz 7%</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @z_bons.each do |z_bon| %>
+			<tr>
+				<td><%= z_bon.id %></td>
+				<td><%= z_bon.date.strftime("%d.%m.%y") %></td>
+				<td> 
+					<% if Store.exists?(z_bon.store_id) %>
+						<%= Store.find(z_bon.store_id).name %>
+					<% else %>
+						--
+					<% end %>
+				</td>
+				<td><%= User.find(z_bon.user_id).name %></td>
+				<td><%= number_to_currency(z_bon.sale19) %></td>
+				<td><%= number_to_currency(z_bon.sale7) %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= paginate @z_bons %>

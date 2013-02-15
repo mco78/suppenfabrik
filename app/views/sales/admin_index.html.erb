@@ -4,8 +4,8 @@
 
 <p>
   Download:
-  <%= link_to "CSV", sales_index_path(format: "csv") %> |
-  <%= link_to "Excel", sales_index_path(format: "xls") %>
+  <%= link_to "CSV", sales_path(format: "csv") %> |
+  <%= link_to "Excel", sales_path(format: "xls") %>
 </p>
 
 <table>
@@ -17,9 +17,6 @@
 			<th>Filiale</th>
 			<th>Mitarbeiter</th>
 			<th>Umsatz</th>
-			<th></th>
-			<th></th>
-			<th></th>
 		</tr>
 	</thead>
 	<tbody>

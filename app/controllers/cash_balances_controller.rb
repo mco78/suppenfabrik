@@ -16,6 +16,14 @@ class CashBalancesController < ApplicationController
 		@receipts = @checkout.receipts
 	end
 
+	def admin_index
+		respond_to do |format|
+			format.html  { @cash_balances = Kaminari.paginate_array(CashBalance.all(:order => :date).reverse).page(params[:page]).per(25) }
+			format.csv { send_data CashBalance.to_csv }
+			format.xls { @cash_balances = CashBalance.all }
+		end
+	end
+
 	def update
 		@checkout = Checkout.find(params[:checkout_id])
 		@cash_balance = CashBalance.find params[:id]

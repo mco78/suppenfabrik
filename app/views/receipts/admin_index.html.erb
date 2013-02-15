@@ -1,0 +1,46 @@
+<h3>Übersicht Belege</h3>
+
+<%= paginate @receipts %>
+
+<p>
+  Download:
+  <%= link_to "CSV", receipts_path(format: "csv") %> |
+  <%= link_to "Excel", receipts_path(format: "xls") %>
+</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Datum</th>
+			<th>Filiale</th>
+			<th>Mitarbeiter</th>
+			<th>Text</th>
+			<th>Netto</th>
+			<th>MWSt</th>
+			<th>Brutto</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @receipts.each do |receipt| %>
+			<tr>
+				<td><%= receipt.id %></td>
+				<td><%= receipt.date.strftime("%d.%m.%y") %></td>
+				<td> 
+					<% if Store.exists?(receipt.store_id) %>
+						<%= Store.find(receipt.store_id).name %>
+					<% else %>
+						--
+					<% end %>
+				</td>
+				<td><%= User.find(receipt.user_id).name %></td>
+				<td><%= receipt.text %></td>
+				<td><%= number_to_currency(receipt.pre_tax) %></td>
+				<td><%= number_to_currency(receipt.tax) %></td>
+				<td><%= number_to_currency(receipt.after_tax) %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= paginate @receipts %>

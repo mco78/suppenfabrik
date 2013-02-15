@@ -8,6 +8,14 @@ class ReceiptsController < ApplicationController
 		@receipts = @checkout.receipts
 	end
 
+	def admin_index
+		respond_to do |format|
+			format.html  { @receipts = Kaminari.paginate_array(Receipt.all(:order => :date).reverse).page(params[:page]).per(25) }
+			format.csv { send_data Receipt.to_csv }
+			format.xls { @receipts = Receipt.all }
+		end
+	end
+
 	def add_new
 		@receipt = Receipt.new
 		init(@receipt)
