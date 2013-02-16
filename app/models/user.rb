@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me,
-                  :time_tracking, :admin, :daily_sales
+                  :time_tracking, :admin, :checkout_rights
   
   validates_presence_of :name
   validates_uniqueness_of :name

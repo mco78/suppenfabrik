@@ -16,7 +16,7 @@
             <li> <%= active_link_to 'Zeiterfassung', timetracking_path %></li>
             <li class="divider"></li>
           <% end %>
-          <% if current_user.daily_sales == true %>
+          <% if current_user.checkout_rights == true %>
             <li> <%= active_link_to 'Endabrechnung', new_checkout_path, :confirm => 'Wirklich mit Endabrechnung beginnen?'  %></li>
             <li class="divider"></li>
           <% end %>

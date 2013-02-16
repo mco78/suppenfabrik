@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 class CashBalancesController < ApplicationController
 
+	before_filter :authenticate_user!
+	before_filter :checkout_rights
+	
 	def index
 		@checkout = Checkout.find(params[:checkout_id])
 		@store = Store.find(@checkout.store_id)

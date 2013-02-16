@@ -16,9 +16,9 @@ class ApplicationController < ActionController::Base
   	end
   end
 
-  def daily_sales_rights
-    unless current_user.daily_sales == true
-      flash[:error] = "Du hast keine Tagesumsätze-Rechte!"
+  def checkout_rights
+    unless current_user.checkout_rights == true
+      flash[:error] = "Du hast keine Endabrechnugns-Rechte!"
       redirect_to :root
     end
   end

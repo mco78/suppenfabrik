@@ -258,8 +258,8 @@
 		<h5>Kassenbestand:</h5>
 		<% unless @cash_balance.nil? %>
 			<ul class="square">
-				<li>Kassenbestand: <%= number_to_currency(@cash_balance.cash) %></li>
-				<li>Barentnahme: <%= number_to_currency(@cash_balance.extraction) %></li>
+				<li id="kasse">Kassenbestand: <%= number_to_currency(@cash_balance.cash) %></li>
+				<li id="barent">Barentnahme: <%= number_to_currency(@cash_balance.extraction) %></li>
 			</ul>
 		<% end %>
 		<br>

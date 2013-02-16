@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130128201429) do
+ActiveRecord::Schema.define(:version => 20130216194939) do
 
   create_table "cash_balances", :force => true do |t|
     t.decimal  "cash"
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(:version => 20130128201429) do
     t.string   "name"
     t.boolean  "admin",                  :default => false, :null => false
     t.boolean  "time_tracking",          :default => false, :null => false
-    t.boolean  "daily_sales",            :default => false, :null => false
+    t.boolean  "checkout_rights",        :default => false, :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -2,7 +2,7 @@
 class SalesController < ApplicationController
 
 	before_filter :authenticate_user!
-	before_filter :admin_rights
+	before_filter :checkout_rights
 	
 	def index
 		@checkout = Checkout.find(params[:checkout_id])

@@ -6,7 +6,7 @@
 		<!-- <th>Erstellt am</th> -->
 		<th>Admin</th>
 		<th>Zeiterfassung</th>
-		<th>Tagesumsätze</th>
+		<th>Endabrechnung</th>
 		<th></th>
 		<th></th>
 		<th></th>
@@ -36,12 +36,12 @@
 					</span>
 				</td>
 				<td>
-					<% if user.daily_sales == true %>
+					<% if user.checkout_rights == true %>
 						<span class="success label">
 					<% else %>
 						<span class="alert label">
 					<% end %>
-					<%= user.daily_sales %>
+					<%= user.checkout_rights %>
 					</span>
 				</td>
 				<td><%= link_to 'anzeigen', user, :class => "tiny round secondary button" %></td>

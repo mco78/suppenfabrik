@@ -39,6 +39,9 @@ $(document).ready(function() {
     $("#remove_modal").reveal();
   });
   $("#fire_finish_modal").click(function() {
+    // page refresh ginge so:
+    // location.reload();
+    // fehlt nur der parameter, der automatisch das modal revealed...
     $("#finish_modal").reveal();
   });
 
