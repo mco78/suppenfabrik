@@ -17,4 +17,5 @@ class CashBalance < ActiveRecord::Base
 	    	end
 	    end
 	end
+
 end

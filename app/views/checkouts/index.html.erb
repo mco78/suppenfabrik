@@ -1,0 +1,50 @@
+<h3>Übersicht Endabrechnungen</h3>
+
+<%= paginate @checkouts %>
+
+<p>
+  Download:
+  <%= link_to "CSV", checkouts_path(format: "csv") %> |
+  <%= link_to "Excel", checkouts_path(format: "xls") %>
+</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Datum</th>
+			<th>Filiale</th>
+			<th>Mitarbeiter</th>
+			<th>abgeschlossen?</th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @checkouts.each do |checkout| %>
+			<tr>
+				<td><%= checkout.id %></td>
+				<td><%= checkout.date.strftime("%d.%m.%y") %></td>
+				<td> 
+					<% if Store.exists?(checkout.store_id) %>
+						<%= Store.find(checkout.store_id).name %>
+					<% else %>
+						--
+					<% end %>
+				</td>
+				<td><%= User.find(checkout.user_id).name %></td>
+				<td>
+					<% if checkout.finished == true %>
+						<span class="success label glyph general">f</span>
+					<% else %>
+						<span class="alert label glyph general">g</span>
+					<% end %>
+				</td>
+				<td><%= link_to 'ansehen', checkout_path(checkout) %></td>
+				<td><%= link_to 'bearbeiten', checkout_sales_path(checkout) %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= paginate @checkouts %>

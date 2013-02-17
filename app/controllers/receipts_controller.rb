@@ -3,6 +3,7 @@ class ReceiptsController < ApplicationController
 
 	before_filter :authenticate_user!
 	before_filter :checkout_rights
+	before_filter :admin_rights, :only => [:admin_index]
 	
 	def index
 		@checkout = Checkout.find(params[:checkout_id])

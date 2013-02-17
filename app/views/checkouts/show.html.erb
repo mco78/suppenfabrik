@@ -1,0 +1,57 @@
+<div class="row">
+	<div class="twelve columns">
+		<h2>Detailansicht Endabrechnung</h2>
+		<h5>Datum: <strong><%= @checkout.date.strftime("%d.%m.%Y") %></strong><br>
+		<% unless @store.nil? %>
+			Filiale: <strong><%= @store.name %></strong>
+		<% end %><br>
+		Benutzer: <%= @user.name %>
+				
+		</h5>
+	</div>
+</div>
+
+<div class="row">
+
+	<fieldset>
+		<h5>Produktumsätze</h5>
+		<% unless @sales.nil? %>
+			<ul class="square">
+			<% @sales.each do |sale| %>
+				<li><%= Product.find(sale.product_id).name %>: <%= number_to_currency(sale.value) %></li>
+			<% end %>
+			</ul>
+		<% end %>
+		
+		<h5>Z-Bon</h5>
+		<% unless @z_bon.nil? %>
+			<ul class="square">
+				<li>Tagesumsatz 19% MWSt: <%= number_to_currency(@z_bon.sale19) %></li>
+				<li>Tagesumsatz 7% MWSt: <%= number_to_currency(@z_bon.sale7) %></li>	
+			</ul>
+		<% end %>
+		
+		<h5>Belege</h5>
+		<% unless @receipts.nil? %>
+			<% @receipts.each do |receipt| %>
+				<%= receipt.text %>
+				<ul class="square">
+					<li>Brutto: <%= receipt.pre_tax %></li>
+					<li>MWSt: <%= receipt.tax %></li>
+					<li>Netto: <%= receipt.after_tax %></li>
+				</ul>
+			<% end %>
+		<% end %>
+			
+		<h5>Kassenbestand:</h5>
+		<% unless @cash_balance.nil? %>
+			<ul class="square">
+				<li id="kasse">Kassenbestand: <%= number_to_currency(@cash_balance.cash) %></li>
+				<li id="barent">Barentnahme: <%= number_to_currency(@cash_balance.extraction) %></li>
+			</ul>
+		<% end %>
+		<br>
+	</fieldset>
+	<%= link_to 'bearbeiten', checkout_sales_path(@checkout), :class => "tiny round button" %> |
+	<%= link_to 'zurück', checkouts_path, :class => "tiny round secondary button" %>
+</div>

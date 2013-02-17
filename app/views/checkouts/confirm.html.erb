@@ -1,0 +1,50 @@
+<%= render :partial => '/checkouts/checkout_title' %>
+
+<div>
+	<h3>Endabrechnung beenden</h3>
+	<p>Sind alle Angaben korrekt? Dann auf "abschließen" klicken. Zum korrigieren der Endabrechnung auf "zurück" klicken.</p>
+	
+	<fieldset>
+		<h5>Produktumsätze</h5>
+		<% unless @sales.nil? %>
+			<ul class="square">
+			<% @sales.each do |sale| %>
+				<li><%= Product.find(sale.product_id).name %>: <%= number_to_currency(sale.value) %></li>
+			<% end %>
+			</ul>
+		<% end %>
+		
+		<h5>Z-Bon</h5>
+		<% unless @z_bon.nil? %>
+			<ul class="square">
+				<li>Tagesumsatz 19% MWSt: <%= number_to_currency(@z_bon.sale19) %></li>
+				<li>Tagesumsatz 7% MWSt: <%= number_to_currency(@z_bon.sale7) %></li>	
+			</ul>
+		<% end %>
+		
+		<h5>Belege</h5>
+		<% unless @receipts.nil? %>
+			<% @receipts.each do |receipt| %>
+				<%= receipt.text %>
+				<ul class="square">
+					<li>Brutto: <%= receipt.pre_tax %></li>
+					<li>MWSt: <%= receipt.tax %></li>
+					<li>Netto: <%= receipt.after_tax %></li>
+				</ul>
+			<% end %>
+		<% end %>
+			
+		<h5>Kassenbestand:</h5>
+		<% unless @cash_balance.nil? %>
+			<ul class="square">
+				<li id="kasse">Kassenbestand: <%= number_to_currency(@cash_balance.cash) %></li>
+				<li id="barent">Barentnahme: <%= number_to_currency(@cash_balance.extraction) %></li>
+			</ul>
+		<% end %>
+		<br>
+	</fieldset>
+	
+	<%= link_to "zurück", checkout_cash_balances_path(@checkout), :class => 'round secondary button' %>
+	<%= link_to "abschließen", finish_checkout_path(@checkout), :class => 'round success button' %>
+
+</div>

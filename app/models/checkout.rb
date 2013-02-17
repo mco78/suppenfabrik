@@ -1,5 +1,5 @@
 class Checkout < ActiveRecord::Base
-  attr_accessible :date, :store_id, :user_id
+  attr_accessible :date, :store_id, :user_id, :finished
 
   belongs_to :user
   belongs_to :store

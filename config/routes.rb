@@ -37,6 +37,10 @@ Suppenfabrik::Application.routes.draw do
   match '/timetracking', :to => 'shifts#timetracking'
 
   resources :checkouts do
+      member do
+        get :confirm
+        get :finish
+      end
       resources :sales
       resources :z_bons
       resources :receipts do

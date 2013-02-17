@@ -3,6 +3,7 @@ class CashBalancesController < ApplicationController
 
 	before_filter :authenticate_user!
 	before_filter :checkout_rights
+	before_filter :admin_rights, :only => [:admin_index]
 	
 	def index
 		@checkout = Checkout.find(params[:checkout_id])
@@ -13,10 +14,6 @@ class CashBalancesController < ApplicationController
 		else
 			@cash_balance = @checkout.cash_balances.last
 		end
-		
-		@sales = @checkout.sales
-		@z_bon = @checkout.z_bons.last
-		@receipts = @checkout.receipts
 	end
 
 	def admin_index
