@@ -57,7 +57,7 @@
 				</td>
 				<td><%= link_to 'ansehen', shift , :class => "tiny round secondary button"%></td>
 				<td><%= link_to 'bearbeiten', edit_shift_path(shift), :class => "tiny round secondary button" %></td>
-				<td><%= link_to 'löschen', shift, :confirm => 'Sicher?', :method => :delete, :class => "tiny round secondary button" %></td>
+				<td><%= link_to 'löschen', shift, :data => {:confirm => 'Sicher?'}, :method => :delete, :class => "tiny round secondary button" %></td>
 			</tr>
 		<% end %>
 	</tbody>
