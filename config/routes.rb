@@ -56,5 +56,6 @@ Suppenfabrik::Application.routes.draw do
   match '/receipts', :to => 'receipts#admin_index'
   match '/cash_balances', :to => 'cash_balances#admin_index'
 
-  mount Foundation::Icons::Rails::Engine => '/fi'
+  #Foundation Icons preview:
+  #mount Foundation::Icons::Rails::Engine => '/fi'
 end
