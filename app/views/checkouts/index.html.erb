@@ -2,12 +2,6 @@
 
 <%= paginate @checkouts %>
 
-<p>
-  Download:
-  <%= link_to "CSV", checkouts_path(format: "csv") %> |
-  <%= link_to "Excel", checkouts_path(format: "xls") %>
-</p>
-
 <table>
 	<thead>
 		<tr>

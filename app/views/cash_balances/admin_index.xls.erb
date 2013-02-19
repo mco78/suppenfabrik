@@ -1,0 +1,27 @@
+<table border="1">
+
+	<tr>
+		<th>ID</th>
+		<th>Datum</th>
+		<th>Filiale</th>
+		<th>Mitarbeiter</th>
+		<th>Kassenbestand</th>
+		<th>Barentnahme</th>
+	</tr>
+	<% @cash_balances.each do |cash_balance| %>
+		<tr>
+			<td><%= cash_balance.id %></td>
+			<td><%= cash_balance.date.strftime("%d.%m.%y") %></td>
+			<td> 
+				<% if Store.exists?(cash_balance.store_id) %>
+					<%= Store.find(cash_balance.store_id).name %>
+				<% else %>
+					--
+				<% end %>
+			</td>
+			<td><%= User.find(cash_balance.user_id).name %></td>
+			<td><%= number_to_currency(cash_balance.cash) %></td>
+			<td><%= number_to_currency(cash_balance.extraction) %></td>
+		</tr>
+	<% end %>
+</table>
