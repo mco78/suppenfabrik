@@ -10,14 +10,19 @@ class CheckoutsController < ApplicationController
 
 	def new
 		@user = current_user
-		if @user.shifts.all(:order => :start).last.stop.nil?
-			@checkout = Checkout.new
-			@checkout.set_defaults(current_user)
-			@checkout.save
-			redirect_to checkout_sales_path(@checkout)
-		else
+		if @user.shifts.nil?
 			flash.keep[:alert] = "Du musst dich erst zu einer Schicht anmelden, um die Endabrechnung zu machen!"
 			redirect_to timetracking_path
+		else
+			if @user.shifts.all(:order => :start).last.stop.nil?
+				@checkout = Checkout.new
+				@checkout.set_defaults(current_user)
+				@checkout.save
+				redirect_to checkout_sales_path(@checkout)
+			else
+				flash.keep[:alert] = "Du musst dich erst zu einer Schicht anmelden, um die Endabrechnung zu machen!"
+				redirect_to timetracking_path
+			end
 		end
 	end
 
