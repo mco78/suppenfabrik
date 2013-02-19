@@ -10,7 +10,7 @@ class CheckoutsController < ApplicationController
 
 	def new
 		@user = current_user
-		if @user.shifts.nil?
+		if @user.shifts.empty?
 			flash.keep[:alert] = "Du musst dich erst zu einer Schicht anmelden, um die Endabrechnung zu machen!"
 			redirect_to timetracking_path
 		else
