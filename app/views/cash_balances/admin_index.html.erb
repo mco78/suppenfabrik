@@ -17,6 +17,7 @@
 			<th>Mitarbeiter</th>
 			<th>Kassenbestand</th>
 			<th>Barentnahme</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -34,6 +35,7 @@
 				<td><%= User.find(cash_balance.user_id).name %></td>
 				<td><%= number_to_currency(cash_balance.cash) %></td>
 				<td><%= number_to_currency(cash_balance.extraction) %></td>
+				<td><%= link_to 'löschen', checkout_cash_balance_path(cash_balance.checkout_id, cash_balance), :data => {:confirm => 'Sicher?'}, :method => :delete, :class => "tiny round secondary button" %></td>
 			</tr>
 		<% end %>
 	</tbody>

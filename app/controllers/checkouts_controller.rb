@@ -1,3 +1,4 @@
+ # -*- coding: utf-8 -*-
 class CheckoutsController < ApplicationController
 
 	before_filter :authenticate_user!
@@ -61,6 +62,28 @@ class CheckoutsController < ApplicationController
 	    @checkout.update_attributes(params[:checkout])
 	end
 
+	def destroy
+		@checkout = Checkout.find(params[:id])
+		@sales = @checkout.sales
+		@sales.each do |sale|
+			sale.destroy
+		end
+		@z_bons = @checkout.z_bons
+		@z_bons.each do |z_bon|
+			z_bon.destroy
+		end
+		@receipts = @checkout.receipts
+		@receipts.each do |receipt|
+			receipt.destroy
+		end
+		@cash_balances = @checkout.cash_balances
+		@cash_balances.each do |cash_balance|
+			cash_balance.destroy
+		end
+		@checkout.destroy
+		flash[:success] = "Endabrechnung mit allen assoziierten Daten gelöscht"
+		redirect_to checkouts_path
+	end
 
 
 end

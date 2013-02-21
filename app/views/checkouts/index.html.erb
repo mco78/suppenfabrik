@@ -12,6 +12,7 @@
 			<th>abgeschlossen?</th>
 			<th></th>
 			<th></th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -34,8 +35,9 @@
 						<span class="alert label glyph general">g</span>
 					<% end %>
 				</td>
-				<td><%= link_to 'ansehen', checkout_path(checkout) %></td>
-				<td><%= link_to 'bearbeiten', checkout_sales_path(checkout) %></td>
+				<td><%= link_to 'ansehen', checkout_path(checkout), :class => "tiny round secondary button" %></td>
+				<td><%= link_to 'bearbeiten', checkout_sales_path(checkout), :class => "tiny round secondary button" %></td>
+				<td><%= link_to 'löschen', checkout, :data => {:confirm => 'Sicher? Alle assoziierten Daten werden auch geslöscht!'}, :method => :delete, :class => "tiny round secondary button" %></td>
 			</tr>
 		<% end %>
 	</tbody>

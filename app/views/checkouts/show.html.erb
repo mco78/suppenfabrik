@@ -18,7 +18,11 @@
 		<% unless @sales.nil? %>
 			<ul class="square">
 			<% @sales.each do |sale| %>
-				<li><%= Product.find(sale.product_id).name %>: <%= number_to_currency(sale.value) %></li>
+				<% if Product.exists?(sale.product_id) %>
+					<li><%= Product.find(sale.product_id).name %>: <%= number_to_currency(sale.value) %></li>
+				<% else %>
+					<li>Produkt existiert nicht</li>
+				<% end %>
 			<% end %>
 			</ul>
 		<% end %>
@@ -53,5 +57,6 @@
 		<br>
 	</fieldset>
 	<%= link_to 'bearbeiten', checkout_sales_path(@checkout), :class => "tiny round button" %> |
-	<%= link_to 'zurück', checkouts_path, :class => "tiny round secondary button" %>
+	<%= link_to 'zurück', checkouts_path, :class => "tiny round secondary button" %> |
+	<%= link_to 'löschen', @checkout, :data => {:confirm => 'Sicher? Alle assoziierten Daten werden auch geslöscht!'}, :method => :delete, :class => "tiny round alert button" %>
 </div>

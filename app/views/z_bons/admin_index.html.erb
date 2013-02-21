@@ -17,6 +17,7 @@
 			<th>Mitarbeiter</th>
 			<th>Umsatz 19%</th>
 			<th>Umsatz 7%</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -34,6 +35,7 @@
 				<td><%= User.find(z_bon.user_id).name %></td>
 				<td><%= number_to_currency(z_bon.sale19) %></td>
 				<td><%= number_to_currency(z_bon.sale7) %></td>
+				<td><%= link_to 'löschen', checkout_z_bon_path(z_bon.checkout_id, z_bon), :data => {:confirm => 'Sicher?'}, :method => :delete, :class => "tiny round secondary button" %></td>
 			</tr>
 		<% end %>
 	</tbody>

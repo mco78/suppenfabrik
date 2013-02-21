@@ -23,6 +23,10 @@ class SalesController < ApplicationController
 		end
 	end
 
+	def show
+		@sale = Sale.find(params[:sale_id])
+	end
+
 	def update
 		@checkout = Checkout.find(params[:checkout_id])
 		@sale = Sale.find params[:id]
@@ -49,7 +53,7 @@ class SalesController < ApplicationController
 
 	def destroy
 		Sale.find(params[:id]).destroy
-		flash[:sucess] = "Umsatz gelöscht"
+		flash[:sucess] = "Produktumsatz gelöscht"
 		redirect_to :back
 	end
 end

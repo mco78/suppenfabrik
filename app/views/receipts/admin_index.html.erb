@@ -19,6 +19,7 @@
 			<th>Netto</th>
 			<th>MWSt</th>
 			<th>Brutto</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -38,6 +39,7 @@
 				<td><%= number_to_currency(receipt.pre_tax) %></td>
 				<td><%= number_to_currency(receipt.tax) %></td>
 				<td><%= number_to_currency(receipt.after_tax) %></td>
+				<td><%= link_to 'löschen', checkout_receipt_path(receipt.checkout_id, receipt), :data => {:confirm => 'Sicher?'}, :method => :delete, :class => "tiny round secondary button" %></td>
 			</tr>
 		<% end %>
 	</tbody>
