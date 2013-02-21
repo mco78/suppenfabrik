@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.11'
 gem 'jquery-rails'
 gem "devise", ">= 2.1.2"
-gem "zurb-foundation", "3.1.1"
 gem 'active_link_to'
 gem 'nested_form'
 gem 'yaml_db'
@@ -26,9 +25,5 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem "compass-rails", ">= 1.0.3"
-end
-
-
-group :production do
-  gem 'therubyracer-heroku', '0.8.1.pre3' 
+  gem "zurb-foundation", "3.1.1"
 end
