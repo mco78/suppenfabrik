@@ -16,9 +16,7 @@
 			<th>Filiale</th>
 			<th>Mitarbeiter</th>
 			<th>Text</th>
-			<th>Netto</th>
-			<th>MWSt</th>
-			<th>Brutto</th>
+			<th>Bruttobetrag</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -36,9 +34,7 @@
 				</td>
 				<td><%= User.find(receipt.user_id).name %></td>
 				<td><%= receipt.text %></td>
-				<td><%= number_to_currency(receipt.pre_tax) %></td>
-				<td><%= number_to_currency(receipt.tax) %></td>
-				<td><%= number_to_currency(receipt.after_tax) %></td>
+				<td><%= number_to_currency(receipt.value) %></td>
 				<td><%= link_to 'löschen', checkout_receipt_path(receipt.checkout_id, receipt), :data => {:confirm => 'Sicher?'}, :method => :delete, :class => "tiny round secondary button" %></td>
 			</tr>
 		<% end %>

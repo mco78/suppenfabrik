@@ -9,7 +9,7 @@ class SalesController < ApplicationController
 		@checkout = Checkout.find(params[:checkout_id])
 		@store = Store.find(@checkout.store_id)
 		@user = current_user
-		@products = Product.where(:capture => true)
+		@products = Product.where(:capture => true).order('name ASC')
 
 		@sales = @checkout.sales
 		@sale = Sale.new

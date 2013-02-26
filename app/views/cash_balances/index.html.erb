@@ -36,7 +36,7 @@
 <% end %>
 <div class="row">
 	<div id="finish" class="eight columns">
-		<%= link_to 'Endabrechung abschließen', confirm_checkout_path(@checkout), :class => "round large button" %>
+		<%= link_to 'Endabrechung prüfen', confirm_checkout_path(@checkout), :class => "round large button" %>
 	</div>
 </div>
 
@@ -54,7 +54,7 @@
 		<div class="two mobile-one columns">
 			<%= link_to 'Kassen-<br>bestand'.html_safe, checkout_cash_balances_path(@checkout), :class => 'button active end_arrow_box' %>
 		</div>
-		<div class="two columns">
+		<div class="two mobile-one columns">
 		</div>
 	</div>
 </div>
@@ -137,6 +137,7 @@
 	  		</div>
 		</div>  
   	</fieldset>
+  	<a class="button cash-custom-close">ok</a>
   	<a class="close-reveal-modal">&#215;</a>
 </div>
 
@@ -218,6 +219,7 @@
 		  	</div>
 		</div>  
 	</fieldset>
+	<a class="button remove-custom-close">ok</a>
 	<a class="close-reveal-modal">&#215;</a>
 </div> 
 

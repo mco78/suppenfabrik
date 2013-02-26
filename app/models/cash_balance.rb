@@ -9,6 +9,8 @@ class CashBalance < ActiveRecord::Base
   	#validates_presence_of 	:cash, :extraction, :date, 
   	#						:checkout_id, :store_id, :user_id
 
+  	before_save :set_zero
+
   	def self.to_csv(options = {})
 		CSV.generate(options) do |csv|
 	    	csv << column_names
@@ -16,6 +18,12 @@ class CashBalance < ActiveRecord::Base
 	    	    csv << shift.attributes.values_at(*column_names)
 	    	end
 	    end
+	end
+
+	def set_zero
+		if self.extraction.nil?
+			self.extraction = 0
+		end
 	end
 
 end

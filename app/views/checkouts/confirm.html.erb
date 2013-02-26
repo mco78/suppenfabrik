@@ -9,7 +9,13 @@
 		<% unless @sales.nil? %>
 			<ul class="square">
 			<% @sales.each do |sale| %>
-				<li><%= Product.find(sale.product_id).name %>: <%= number_to_currency(sale.value) %></li>
+				<li>
+				<% if Product.exists?(sale.product_id) %>
+					<%= Product.find(sale.product_id).name %>
+				<% else %>
+					gelöschtes Produkt
+				<% end %>
+				: <%= sale.value %></li>
 			<% end %>
 			</ul>
 		<% end %>
@@ -25,11 +31,8 @@
 		<h5>Belege</h5>
 		<% unless @receipts.nil? %>
 			<% @receipts.each do |receipt| %>
-				<%= receipt.text %>
 				<ul class="square">
-					<li>Brutto: <%= number_to_currency(receipt.pre_tax) %></li>
-					<li>MWSt: <%= number_to_currency(receipt.tax) %></li>
-					<li>Netto: <%= number_to_currency(receipt.after_tax) %></li>
+					<li><%= receipt.text %>: <%= number_to_currency(receipt.value) %></li>
 				</ul>
 			<% end %>
 		<% end %>
@@ -43,6 +46,50 @@
 		<% end %>
 		<br>
 	</fieldset>
+	
+	<% if @last_balance.nil? %>
+		
+		<div class="panel">Keine Berechnung der Kassendifferenz möglich, da keine Daten zum vorherigen Tag gefunden!</div>
+		
+	<% else %>
+		
+		<table class="calculation">
+			<% last_checkout = @last_balance.cash - @last_balance.extraction %>
+			<tr>
+				<td class="row_info">Kassenbestand vom <%= @last_balance.date.strftime("%d.%m.%Y") %></td>
+				<td class="row_data"><%= number_to_currency(last_checkout) %></td>
+			</tr>
+			<tr>
+				<td class="row_info">+ Umsatz:</td>
+				<td class="row_data"> <%= number_to_currency(@z_bon.sale19 + @z_bon.sale7) %></td>
+			</tr>
+			<tr>
+				<td class="row_info">- Belege:</td>
+				<td class="row_data"><%= number_to_currency(@receipts.sum(:value)) %></td>
+			</tr>
+			<% subtotal = last_checkout + @z_bon.sale19 + @z_bon.sale7 - @receipts.sum(:value) %>
+			<tr>
+				<td class="row_info"><strong>=</strong></td>
+				<td class="row_data"><strong><%= number_to_currency(subtotal) %></strong></td>
+			</tr>
+			
+			<tr>
+				<td class="row_info">Heute gezählter Bestand:</td>
+				<td class="row_data"><strong><%= number_to_currency(@cash_balance.cash) %></strong></td>
+			</tr>
+			
+			<tr>
+				<td class="row_info"><strong>Differenz:</strong></td>
+				<% if subtotal === @cash_balance.cash %>
+					<td class="row_data true">
+				<% else %>
+					<td class="row_data false">
+				<% end %>
+				<strong><%= number_to_currency(subtotal - @cash_balance.cash) %></strong></td>
+			</tr>
+		</table>
+		
+	<% end -%>
 	
 	<%= link_to "zurück", checkout_cash_balances_path(@checkout), :class => 'round secondary button' %>
 	<%= link_to "abschließen", finish_checkout_path(@checkout), :class => 'round success button' %>

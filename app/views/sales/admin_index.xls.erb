@@ -28,7 +28,7 @@
         <% end %>
       </td>
       <td><%= User.find(sale.user_id).name %></td>
-      <td><%= number_to_currency(sale.value) %></td>
+      <td><%= sale.value %></td>
     </tr>
   <% end %>
 </table>

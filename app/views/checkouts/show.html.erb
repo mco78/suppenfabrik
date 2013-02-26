@@ -38,11 +38,8 @@
 		<h5>Belege</h5>
 		<% unless @receipts.nil? %>
 			<% @receipts.each do |receipt| %>
-				<%= receipt.text %>
 				<ul class="square">
-					<li>Brutto: <%= receipt.pre_tax %></li>
-					<li>MWSt: <%= receipt.tax %></li>
-					<li>Netto: <%= receipt.after_tax %></li>
+					<li><%= receipt.text %>: <%= number_to_currency(receipt.value) %></li>
 				</ul>
 			<% end %>
 		<% end %>

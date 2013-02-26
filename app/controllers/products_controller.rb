@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
 	before_filter :admin_rights
 
 	def index
-		@products = Product.all(:order => :created_at)
+		@products = Product.all(:order => 'name ASC')
 	end
 
 	def update

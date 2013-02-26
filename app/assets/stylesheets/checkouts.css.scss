@@ -116,3 +116,21 @@
 #finish {
 	float: right;
 }
+
+// Kassendifferenz
+
+.calculation td.row_info {
+	text-align: right;
+}
+
+.calculation td.row_data {
+	text-align: right;
+}
+
+.calculation td.true {
+	color: #5DA423;
+}
+
+.calculation td.false {
+	color: #C60F13;
+}

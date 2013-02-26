@@ -24,9 +24,7 @@
         </td>
         <td><%= User.find(receipt.user_id).name %></td>
         <td><%= receipt.text %></td>
-        <td><%= number_to_currency(receipt.pre_tax) %></td>
-        <td><%= number_to_currency(receipt.tax) %></td>
-        <td><%= number_to_currency(receipt.after_tax) %></td>
+        <td><%= number_to_currency(receipt.value) %></td>
       </tr>
     <% end %>
 </table>

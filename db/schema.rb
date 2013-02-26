@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130217192405) do
+ActiveRecord::Schema.define(:version => 20130225200056) do
 
   create_table "cash_balances", :force => true do |t|
     t.decimal  "cash"
@@ -49,9 +49,7 @@ ActiveRecord::Schema.define(:version => 20130217192405) do
 
   create_table "receipts", :force => true do |t|
     t.text     "text"
-    t.decimal  "pre_tax"
-    t.decimal  "tax"
-    t.decimal  "after_tax"
+    t.decimal  "value"
     t.integer  "user_id"
     t.integer  "store_id"
     t.integer  "checkout_id"
@@ -62,7 +60,7 @@ ActiveRecord::Schema.define(:version => 20130217192405) do
 
   create_table "sales", :force => true do |t|
     t.date     "date"
-    t.decimal  "value"
+    t.integer  "value"
     t.integer  "user_id"
     t.integer  "store_id"
     t.datetime "created_at",  :null => false

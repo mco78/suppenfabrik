@@ -46,6 +46,7 @@ class CheckoutsController < ApplicationController
 		@z_bon = @checkout.z_bons.last
 		@receipts = @checkout.receipts
 		@cash_balance = @checkout.cash_balances.last
+		@last_balance = CashBalance.where(:store_id => @checkout.store_id).order('date DESC').second
 	end
 
 	def finish

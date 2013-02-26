@@ -22,18 +22,11 @@
 				    		<label>Text</label>
 				    		<%= f.text_field :text, :class => 'submittable' %>
 				    	</div>
-				    	<div class="two columns">
-				    		<label>Netto</label>
-				    		<%= f.number_field :pre_tax, :class => 'submittable' %>
+				    	<div class="three columns">
+				    		<label>Bruttobetrag</label>
+				    		<%= f.number_field :value, :class => 'submittable' %>
 				    	</div>
-				    	<div class="two columns">
-				    		<label>MWSt.</label>
-				    		<%= f.number_field :tax, :class => 'submittable' %>
-				    	</div>
-				    	<div class="two columns">
-				    		<label>Brutto</label>
-				    		<%= f.number_field :after_tax, :class => 'submittable' %>
-				    	</div>
+				    	<div class="one columns"></div>
 				    </fieldset>
 				<% end %>
 			<% end %>
@@ -62,7 +55,7 @@
     	<div class="two mobile-one columns">
     		<%= link_to 'Kassen-<br>bestand'.html_safe, checkout_cash_balances_path, :class => 'button end_arrow_box' %>
     	</div>
-    	<div class="two columns">
+    	<div class="two mobile-one columns">
     	</div>
   	</div>
 </div>

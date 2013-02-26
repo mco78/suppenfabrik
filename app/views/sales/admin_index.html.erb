@@ -40,7 +40,7 @@
 					<% end %>
 				</td>
 				<td><%= User.find(sale.user_id).name %></td>
-				<td><%= number_to_currency(sale.value) %></td>
+				<td><%= sale.value %></td>
 				<td><%= link_to 'löschen', checkout_sale_path(sale.checkout_id, sale), :data => {:confirm => 'Sicher?'}, :method => :delete, :class => "tiny round secondary button" %></td>
 			</tr>
 		<% end %>

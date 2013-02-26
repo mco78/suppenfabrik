@@ -38,5 +38,11 @@ $(document).ready(function() {
   $("#fire_remove_modal").click(function() {
     $("#remove_modal").reveal();
   });
+  $(".remove-custom-close").click(function() {
+    $('#remove_modal').trigger('reveal:close')
+  })
+  $(".cash-custom-close").click(function() {
+    $('#cash_modal').trigger('reveal:close')
+  })
 
 });
