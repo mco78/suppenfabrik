@@ -51,6 +51,10 @@
 		
 		<div class="panel">Keine Berechnung der Kassendifferenz möglich, da keine Daten zum vorherigen Tag gefunden!</div>
 		
+	<% elsif @cash_balance.cash.nil? %>
+	
+		<div class="panel">Keine Berechnung der Kassendifferenz möglich, da kein Kassenbestand angegeben!</div>
+		
 	<% else %>
 		
 		<table class="calculation">
@@ -60,11 +64,11 @@
 				<td class="row_data"><%= number_to_currency(last_checkout) %></td>
 			</tr>
 			<tr>
-				<td class="row_info">+ Umsatz:</td>
+				<td class="row_info">+ heutiger Umsatz:</td>
 				<td class="row_data"> <%= number_to_currency(@z_bon.sale19 + @z_bon.sale7) %></td>
 			</tr>
 			<tr>
-				<td class="row_info">- Belege:</td>
+				<td class="row_info">- heutige Belege:</td>
 				<td class="row_data"><%= number_to_currency(@receipts.sum(:value)) %></td>
 			</tr>
 			<% subtotal = last_checkout + @z_bon.sale19 + @z_bon.sale7 - @receipts.sum(:value) %>

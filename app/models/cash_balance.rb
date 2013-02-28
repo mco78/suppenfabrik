@@ -21,6 +21,9 @@ class CashBalance < ActiveRecord::Base
 	end
 
 	def set_zero
+		if self.cash.nil?
+			self.cash = 0
+		end
 		if self.extraction.nil?
 			self.extraction = 0
 		end

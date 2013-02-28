@@ -9,12 +9,15 @@ class ZBonsController < ApplicationController
 		@checkout = Checkout.find(params[:checkout_id])
 		@store = Store.find(@checkout.store_id)
 		@user = current_user
-
 		if ZBon.find_by_checkout_id(@checkout.id).nil?
-			@z_bon = ZBon.new
-		else
-			@z_bon = @checkout.z_bons.last
+		 	@z_bon = ZBon.create(	:checkout_id => @checkout.id,
+		 							:date => @checkout.date,
+		 							:user_id => @user.id,
+		 							:store_id => @store.id)
+		 else
+		 	@z_bon = @checkout.z_bons.last
 		end
+		redirect_to edit_checkout_z_bon_path(@checkout, @z_bon)
 	end
 
 	def admin_index
@@ -25,15 +28,24 @@ class ZBonsController < ApplicationController
 		end
 	end
 
-	def update
+	def edit
 		@checkout = Checkout.find(params[:checkout_id])
-		@z_bon = ZBon.find params[:id]
-		@z_bon.update_attributes params[:z_bon]
-		redirect_to checkout_z_bons_path(@checkout)
+		@store = Store.find(@checkout.store_id)
+		@user = current_user
+		@z_bon = ZBon.find(params[:id])
 	end
 
-	def new
-		@z_bon = ZBon.new
+	def update
+		@checkout = Checkout.find(params[:checkout_id])
+		@z_bon = ZBon.find(params[:id])
+
+		if @z_bon.update_attributes(params[:z_bon])
+			flash[:success] = "Z-Bon aktualisiert."
+			redirect_to edit_checkout_z_bon_path(@checkout, @z_bon)	 
+		else
+			flash[:error] = "Fehler!"
+			redirect_to :back
+	    end
 	end
 
 	def create

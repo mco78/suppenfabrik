@@ -10,10 +10,14 @@ class CashBalancesController < ApplicationController
 		@store = Store.find(@checkout.store_id)
 		@user = current_user
 		if CashBalance.find_by_checkout_id(@checkout.id).nil?
-			@cash_balance = CashBalance.new
+			@cash_balance = CashBalance.create(	:checkout_id => @checkout.id,
+		 										:date => @checkout.date,
+		 										:user_id => @user.id,
+		 										:store_id => @store.id)
 		else
 			@cash_balance = @checkout.cash_balances.last
 		end
+		redirect_to edit_checkout_cash_balance_path(@checkout, @cash_balance)
 	end
 
 	def admin_index
@@ -24,15 +28,18 @@ class CashBalancesController < ApplicationController
 		end
 	end
 
+	def edit
+		@checkout = Checkout.find(params[:checkout_id])
+		@store = Store.find(@checkout.store_id)
+		@user = current_user
+		@cash_balance = CashBalance.find(params[:id])
+	end
+
 	def update
 		@checkout = Checkout.find(params[:checkout_id])
 		@cash_balance = CashBalance.find params[:id]
 		@cash_balance.update_attributes params[:cash_balance]
 		redirect_to checkout_cash_balances_path(@checkout)
-	end
-
-	def new
-		@cash_balance = CashBalance.new
 	end
 
 	def create

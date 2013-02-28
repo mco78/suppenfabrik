@@ -3,33 +3,69 @@
 <div class="row">
   	<div class="twelve columns">
     	<h3>Z-Bon erfassen (Schritt 2 von 4)</h3>
+     
+        <div><p>
+            <strong>Dev-Info:</strong> <br>
+            @z_bons: <%= @z_bons.count %> <br>
+            @z_bon.id: <%= @z_bon.id %> <br>
+        </p></div>   
 
+        <% z_bon = @z_bons.last %>
+        
     	<div class="fields">
-        	<%= form_for [@checkout, @z_bon], :remote => true do |f| %>
-        		<%= f.hidden_field :checkout_id, :value => @checkout.id %>
-        		<%= f.hidden_field :user_id, :value => @user.id %>
-        		<%= f.hidden_field :store_id, :value => @store.id %>
-        		<%= f.hidden_field :date, :value => @checkout.date %>
-         
-	          	<div class="row">
-	            	<div class="two mobile-one columns">
-	              		<label class="right inline">Tagesumsatz 19%:</label>
-	            	</div>
-	            	<div class="four mobile-two columns">
-	              		<%= f.number_field :sale19, :class => 'submittable' %>
-	              	</div>
-	            	<div class="one colums"></div>
-	          	</div>
-	          	<div class="row">
-	            	<div class="two mobile-one columns">
-	              		<label class="right inline">Tagesumsatz 7%:</label>
-	            	</div>
-	            	<div class="four mobile-two columns">
-	              		<%= f.number_field :sale7, :class => 'submittable' %>
-	            	</div>
-	            	<div class="one colums"></div>
-	          	</div>
-	        <% end %>
+            <% if z_bon.nil? %>   
+            	<%= form_for [@checkout, @z_bon], :remote => true do |f| %>
+                    <%= f.hidden_field :checkout_id, :value => @checkout.id %>
+                    <%= f.hidden_field :user_id, :value => @user.id %>
+                    <%= f.hidden_field :store_id, :value => @store.id %>
+                    <%= f.hidden_field :date, :value => @checkout.date %>
+             
+                    <div class="row">
+                        <div class="two mobile-one columns">
+                            <label class="right inline">Tagesumsatz 19%:</label>
+                        </div>
+                        <div class="four mobile-two columns">
+                            <%= f.number_field :sale19, :class => 'submittable', :type => 'number' %>
+                        </div>
+                        <div class="one colums"></div>
+                    </div>
+                    <div class="row">
+                        <div class="two mobile-one columns">
+                            <label class="right inline">Tagesumsatz 7%:</label>
+                        </div>
+                        <div class="four mobile-two columns">
+                            <%= f.number_field :sale7, :class => 'submittable', :type => 'number'  %>
+                        </div>
+                        <div class="one colums"></div>
+                    </div>
+                <% end %>   
+            <% else %>
+                <%= form_for [@checkout, z_bon], :remote => true do |f| %>
+                    <%= f.hidden_field :checkout_id, :value => @checkout.id %>
+                    <%= f.hidden_field :user_id, :value => @user.id %>
+                    <%= f.hidden_field :store_id, :value => @store.id %>
+                    <%= f.hidden_field :date, :value => @checkout.date %>
+             
+                    <div class="row">
+                        <div class="two mobile-one columns">
+                            <label class="right inline">Tagesumsatz 19%:</label>
+                        </div>
+                        <div class="four mobile-two columns">
+                            <%= f.number_field :sale19, :class => 'submittable', :type => 'number' %>
+                        </div>
+                        <div class="one colums"></div>
+                    </div>
+                    <div class="row">
+                        <div class="two mobile-one columns">
+                            <label class="right inline">Tagesumsatz 7%:</label>
+                        </div>
+                        <div class="four mobile-two columns">
+                            <%= f.number_field :sale7, :class => 'submittable', :type => 'number'  %>
+                        </div>
+                        <div class="one colums"></div>
+                    </div>
+                <% end %>   
+            <% end %>   
       	</div>
   	</div>
 </div>

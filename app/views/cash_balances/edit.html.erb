@@ -5,40 +5,44 @@
 
   	<p>Bitte Kassenbestand und anschließende Barentnahme aus der Kasse eingeben.</br>
   	Entweder Betrag direkt ins Form-Feld eingeben, oder <span class="glyph general">k</span> klicken und Scheine und Münzen einzeln eingeben. </p>
+  	
+  	<div class="fields">
+  		<%= form_for [@checkout, @cash_balance], :remote => true, :html => {:id => "cash_balance_form"} do |f| %>
+			<%= f.hidden_field :checkout_id, :value => @checkout.id %>
+		  	<%= f.hidden_field :user_id, :value => @user.id %>
+			<%= f.hidden_field :store_id, :value => @store.id %>
+			<%= f.hidden_field :date, :value => @checkout.date %>
+			<div class="row">
+		    	<div class="two mobile-one columns">
+		      		<label class="right inline">Kassenbestand:</label>
+		    	</div>
+		    	<div class="four mobile-two columns">
+		      		<%= f.number_field :cash, :id => "cash_total", :class => "submittable", :type => 'number' %>
+		      	</div>
+		      	<div class="one columns" ><span class="glyph general has-tip tip-bottom" id="fire_cash_modal" data-width="90" title="Hier klicken um Scheine & Münzen einzugeben">k</span></div>
+		    	<div class="one colums"></div>
+		  	</div>
+		  	<div class="row">
+		    	<div class="two mobile-one columns">
+		      		<label class="right inline">Barentnahme:</label>
+		    	</div>
+		    	<div class="four mobile-two columns">
+		      		<%= f.number_field :extraction, :step => 2, :id => "remove_total", :class => "submittable", :type => 'number' %>
+		      	</div>
+		      	<div class="one columns" ><span class="glyph general has-tip tip-bottom" id="fire_remove_modal" data-width="90" title="Hier klicken um Scheine & Münzen einzugeben">k</span></div>
+		    	<div class="one colums"></div>
+		  	</div>
+		<% end %>
+		<div class="row">
+			<div id="finish" class="eight columns">
+				<%= link_to 'Endabrechung prüfen', confirm_checkout_path(@checkout), :class => "round large button" %>
+			</div>
+		</div>
+  	</div>
 </div>
 <br><br>
 
-<%= form_for [@checkout, @cash_balance], :remote => true, :html => {:id => "cash_balance_form"} do |f| %>
-	<%= f.hidden_field :checkout_id, :value => @checkout.id %>
-  	<%= f.hidden_field :user_id, :value => @user.id %>
-	<%= f.hidden_field :store_id, :value => @store.id %>
-	<%= f.hidden_field :date, :value => @checkout.date %>
-	<div class="row">
-    	<div class="two mobile-one columns">
-      		<label class="right inline">Kassenbestand:</label>
-    	</div>
-    	<div class="four mobile-two columns">
-      		<%= f.number_field :cash, :id => "cash_total", :class => "submittable" %>
-      	</div>
-      	<div class="one columns" ><span class="glyph general has-tip tip-bottom" id="fire_cash_modal" data-width="90" title="Hier klicken um Scheine & Münzen einzugeben">k</span></div>
-    	<div class="one colums"></div>
-  	</div>
-  	<div class="row">
-    	<div class="two mobile-one columns">
-      		<label class="right inline">Barentnahme:</label>
-    	</div>
-    	<div class="four mobile-two columns">
-      		<%= f.number_field :extraction, :step => 2, :id => "remove_total", :class => "submittable" %>
-      	</div>
-      	<div class="one columns" ><span class="glyph general has-tip tip-bottom" id="fire_remove_modal" data-width="90" title="Hier klicken um Scheine & Münzen einzugeben">k</span></div>
-    	<div class="one colums"></div>
-  	</div>
-<% end %>
-<div class="row">
-	<div id="finish" class="eight columns">
-		<%= link_to 'Endabrechung prüfen', confirm_checkout_path(@checkout), :class => "round large button" %>
-	</div>
-</div>
+
 
 <div class="row">
 	<div class="twelve colums">

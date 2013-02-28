@@ -46,7 +46,12 @@ class CheckoutsController < ApplicationController
 		@z_bon = @checkout.z_bons.last
 		@receipts = @checkout.receipts
 		@cash_balance = @checkout.cash_balances.last
-		@last_balance = CashBalance.where(:store_id => @checkout.store_id).order('date DESC').second
+		@last_checkout = Checkout.where(:store_id => @checkout.store_id).order('created_at DESC').second
+		if @last_checkout.nil?
+			@last_balance = nil
+		else
+			@last_balance = @last_checkout.cash_balances.last
+		end
 	end
 
 	def finish
