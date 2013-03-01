@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225200056) do
+ActiveRecord::Schema.define(:version => 20130301210431) do
 
   create_table "cash_balances", :force => true do |t|
     t.decimal  "cash"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(:version => 20130225200056) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "",    :null => false
+    t.string   "email",                  :default => ""
     t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -103,7 +103,6 @@ ActiveRecord::Schema.define(:version => 20130225200056) do
     t.boolean  "checkout_rights",        :default => false, :null => false
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "z_bons", :force => true do |t|
