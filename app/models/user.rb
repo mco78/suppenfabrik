@@ -31,6 +31,11 @@ class User < ActiveRecord::Base
   # 					:start => Time.now)
   # end
 
+  # disable email required (Source:http://d.hatena.ne.jp/ancou/20110811/p1)
+  def e_mail_required?
+    false
+  end
+
   def end_shift(shift)
   	@shift = shift
   	@shift.stop = Time.now + 5*60 #add five minutes to shift
