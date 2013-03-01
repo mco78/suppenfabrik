@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
 	def index
 		@title = "Übersicht User"
-		@users = User.all
+		@users = User.all(:order => :name)
 	end
 
 	def show
