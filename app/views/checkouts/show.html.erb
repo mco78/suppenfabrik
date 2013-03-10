@@ -19,7 +19,7 @@
 			<ul class="square">
 			<% @sales.each do |sale| %>
 				<% if Product.exists?(sale.product_id) %>
-					<li><%= Product.find(sale.product_id).name %>: <%= number_to_currency(sale.value) %></li>
+					<li><%= Product.find(sale.product_id).name %>: <%= sale.value %></li>
 				<% else %>
 					<li>Produkt existiert nicht</li>
 				<% end %>

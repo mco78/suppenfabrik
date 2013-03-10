@@ -29,7 +29,7 @@ class CheckoutsController < ApplicationController
 
 	def show
 		@checkout = Checkout.find(params[:id])
-		@user = current_user
+		@user = User.find(@checkout.user_id)
 		@store = @checkout.store
 		@sales = @checkout.sales
 		@z_bon = @checkout.z_bons.last
