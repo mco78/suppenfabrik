@@ -60,7 +60,7 @@
 		<table class="calculation">
 			<% last_checkout = @last_balance.cash - @last_balance.extraction %>
 			<tr>
-				<td class="row_info">Kassenbestand vom <%= @last_balance.date.strftime("%d.%m.%Y") %></td>
+				<td class="row_info">Kassenbestand vom <%= @last_balance.date.strftime("%d.%m.%Y %H:%M") %></td>
 				<td class="row_data"><%= number_to_currency(last_checkout) %></td>
 			</tr>
 			<tr>

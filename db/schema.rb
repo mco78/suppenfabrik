@@ -11,21 +11,49 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130301210431) do
+ActiveRecord::Schema.define(:version => 20130327201715) do
 
   create_table "cash_balances", :force => true do |t|
     t.decimal  "cash"
     t.decimal  "extraction"
-    t.date     "date"
+    t.datetime "date"
     t.integer  "checkout_id"
     t.integer  "store_id"
     t.integer  "user_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "bill200"
+    t.integer  "bill100"
+    t.integer  "bill50"
+    t.integer  "bill20"
+    t.integer  "bill10"
+    t.integer  "bill5"
+    t.integer  "bill2"
+    t.integer  "bill1"
+    t.integer  "bill0_50"
+    t.integer  "bill0_20"
+    t.integer  "bill0_10"
+    t.integer  "bill0_05"
+    t.integer  "bill0_02"
+    t.integer  "bill0_01"
+    t.integer  "ex_bill200"
+    t.integer  "ex_bill100"
+    t.integer  "ex_bill50"
+    t.integer  "ex_bill20"
+    t.integer  "ex_bill10"
+    t.integer  "ex_bill5"
+    t.integer  "ex_bill2"
+    t.integer  "ex_bill1"
+    t.integer  "ex_bill0_50"
+    t.integer  "ex_bill0_20"
+    t.integer  "ex_bill0_10"
+    t.integer  "ex_bill0_05"
+    t.integer  "ex_bill0_02"
+    t.integer  "ex_bill0_01"
   end
 
   create_table "checkouts", :force => true do |t|
-    t.date     "date"
+    t.datetime "date"
     t.integer  "store_id"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
@@ -53,13 +81,13 @@ ActiveRecord::Schema.define(:version => 20130301210431) do
     t.integer  "user_id"
     t.integer  "store_id"
     t.integer  "checkout_id"
-    t.date     "date"
+    t.datetime "date"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
 
   create_table "sales", :force => true do |t|
-    t.date     "date"
+    t.datetime "date"
     t.integer  "value"
     t.integer  "user_id"
     t.integer  "store_id"
@@ -108,7 +136,7 @@ ActiveRecord::Schema.define(:version => 20130301210431) do
   create_table "z_bons", :force => true do |t|
     t.decimal  "sale19"
     t.decimal  "sale7"
-    t.date     "date"
+    t.datetime "date"
     t.integer  "user_id"
     t.integer  "store_id"
     t.integer  "checkout_id"

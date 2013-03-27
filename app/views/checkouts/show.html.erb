@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="twelve columns">
 		<h2>Detailansicht Endabrechnung</h2>
-		<h5>Datum: <strong><%= @checkout.date.strftime("%d.%m.%Y") %></strong><br>
+		<h5>Datum: <strong><%= @checkout.date.strftime("%d.%m.%y %H:%M") %></strong><br>
 		<% unless @store.nil? %>
 			Filiale: <strong><%= @store.name %></strong>
 		<% end %><br>

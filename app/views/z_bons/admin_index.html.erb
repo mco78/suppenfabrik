@@ -24,7 +24,7 @@
 		<% @z_bons.each do |z_bon| %>
 			<tr>
 				<td><%= z_bon.id %></td>
-				<td><%= z_bon.date.strftime("%d.%m.%y") %></td>
+				<td><%= z_bon.date.strftime("%d.%m.%y %H:%M") %></td>
 				<td> 
 					<% if Store.exists?(z_bon.store_id) %>
 						<%= Store.find(z_bon.store_id).name %>

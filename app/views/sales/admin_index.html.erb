@@ -24,7 +24,7 @@
 		<% @sales.each do |sale| %>
 			<tr>
 				<td><%= sale.id %></td>
-				<td><%= sale.date.strftime("%d.%m.%y") %></td>
+				<td><%= sale.date.strftime("%d.%m.%y %H:%M") %></td>
 				<td>
 					<% if Product.exists?(sale.product_id) %>
 						<%= Product.find(sale.product_id).name %>

@@ -1,4 +1,4 @@
- # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 class CheckoutsController < ApplicationController
 
 	before_filter :authenticate_user!

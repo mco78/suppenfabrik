@@ -24,7 +24,7 @@
 		<% @receipts.each do |receipt| %>
 			<tr>
 				<td><%= receipt.id %></td>
-				<td><%= receipt.date.strftime("%d.%m.%y") %></td>
+				<td><%= receipt.date.strftime("%d.%m.%y %H:%M") %></td>
 				<td> 
 					<% if Store.exists?(receipt.store_id) %>
 						<%= Store.find(receipt.store_id).name %>

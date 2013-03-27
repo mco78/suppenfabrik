@@ -19,7 +19,7 @@
 		<% @checkouts.each do |checkout| %>
 			<tr>
 				<td><%= checkout.id %></td>
-				<td><%= checkout.date.strftime("%d.%m.%y") %></td>
+				<td><%= checkout.date.strftime("%d.%m.%y %H:%M") %></td>
 				<td> 
 					<% if Store.exists?(checkout.store_id) %>
 						<%= Store.find(checkout.store_id).name %>

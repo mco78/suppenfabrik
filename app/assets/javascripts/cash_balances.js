@@ -7,6 +7,7 @@ function calculateCash() {
       sum_cash += parseFloat($(this).val()) * parseFloat($(this).attr('id'));
     });
     $('input#cash_total').val(sum_cash.toFixed(2).replace(".",","));
+    $('input#cash_total').submit();
 };
 
 // function Barentnahme
@@ -18,6 +19,7 @@ function calculateRemove() {
       sum_remove += parseFloat($(this).val()) * parseFloat($(this).attr('id'));
     });
     $('input#remove_total').val(sum_remove.toFixed(2).replace(".",","));
+    $('input#remove_total').submit();
 };
 
 // Auto-Calculate Cashier Values
